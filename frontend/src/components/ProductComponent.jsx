@@ -6,7 +6,9 @@ import { useQuery } from "react-query";
 
 const ProductComponent = () => {
   const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
   const [price, setPrice] = useState(0);
+  const [imagepathe, setImagepathe] = useState("");
   const [category, setCategory] = useState(0);
   const navigator = useNavigate();
   const {
@@ -17,8 +19,19 @@ const ProductComponent = () => {
   } = useQuery("List Categoty", () => listCategories());
   const saveProduct = async (e) => {
     e.preventDefault();
-    await createProduct({ name, price, category });
+    await createProduct({ name, description, price, imagepathe, category });
     navigator("/list-product");
+  };
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setImagepathe(reader.result);
+    };
+    if (file) {
+      reader.readAsDataURL(file);
+    }
   };
 
   if (isLoading) return <h1>Loading</h1>;
@@ -48,6 +61,17 @@ const ProductComponent = () => {
                   onChange={(e) => setName(e.target.value)}
                 ></input>
               </div>
+              <div className="form-group mb-2">
+                <label className="form-label">Description:</label>
+                <input
+                  type="text"
+                  placeholder="Enter Product Description"
+                  name="description"
+                  value={description}
+                  className="form-control"
+                  onChange={(e) => setDescription(e.target.value)}
+                ></input>
+              </div>
 
               <div className="form-group mb-2">
                 <label className="form-label">Price:</label>
@@ -66,9 +90,26 @@ const ProductComponent = () => {
                   }}
                 ></input>
               </div>
+              <div className="form-group mb-2">
+                <label className="form-label">Image:</label>
+                <input
+                  type="file"
+                  accept="image/*"
+                  name="imagepathe"
+                  className="form-control"
+                  onChange={handleImageChange}
+                />
+                {imagepathe && (
+                  <img
+                    src={imagepathe}
+                    alt="Product Preview"
+                    style={{ marginTop: '10px', maxWidth: '100%' }}
+                  />
+                )}
+              </div>
 
               <div className="form-group mb-2">
-                <label className="form-label">Email:</label>
+                <label className="form-label">Category:</label>
                 <select
                   defaultValue=""
                   className="form-control"

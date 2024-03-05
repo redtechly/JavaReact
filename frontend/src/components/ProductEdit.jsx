@@ -6,7 +6,9 @@ import { listCategories } from "../services/CategoryService";
 
 const ProductEdit = () => {
   const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
   const [price, setPrice] = useState(0);
+  const [imagepathe, setImagepathe] = useState("");
   const [category, setCategory] = useState(0);
   const navigator = useNavigate();
   const { id } = useParams();
@@ -19,11 +21,23 @@ const ProductEdit = () => {
     {
       onSuccess: (data) => {
         setName(data.name);
+        setDescription(data.description);
         setPrice(Number(data.price));
+        setImagepathe(data.imagepathe)
         setCategory(Number(data.category.id));
       },
     }
   );
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setImagepathe(reader.result);
+    };
+    if (file) {
+      reader.readAsDataURL(file);
+    }
+  };
   // const saveProduct = async (e) => {
   //   e.preventDefault();
   //   await createProduct({ name, price, category });
@@ -57,6 +71,18 @@ const ProductEdit = () => {
                 ></input>
               </div>
               <div className="form-group mb-2">
+                <label className="form-label">Description:</label>
+                <input
+                  type="text"
+                  placeholder="Enter Product Description"
+                  name="description"
+                  value={description}
+                  className="form-control"
+                  onChange={(e) => setDescription(e.target.value)}
+                ></input>
+              </div>
+
+              <div className="form-group mb-2">
                 <label className="form-label">Price:</label>
                 <input
                   type="number"
@@ -74,7 +100,24 @@ const ProductEdit = () => {
                 ></input>
               </div>
               <div className="form-group mb-2">
-                <label className="form-label">Email:</label>
+                <label className="form-label">Image:</label>
+                <input
+                  type="file"
+                  accept="image/*"
+                  name="imagepathe"
+                  className="form-control"
+                  onChange={handleImageChange}
+                />
+                {imagepathe && (
+                  <img
+                    src={imagepathe}
+                    alt="Product Preview"
+                    style={{ marginTop: '10px', maxWidth: '100%' }}
+                  />
+                )}
+              </div>
+              <div className="form-group mb-2">
+                <label className="form-label">Category:</label>
                 <select
                   defaultValue={category}
                   className="form-control"
@@ -94,7 +137,7 @@ const ProductEdit = () => {
                 className="btn btn-success"
                 onClick={async (e) => {
                   e.preventDefault();
-                  await updateProduct(id, { name, price, category });
+                  await updateProduct(id, { name, description, price, imagepathe, category });
                   navigator("/list-product");
                 }}
               >
