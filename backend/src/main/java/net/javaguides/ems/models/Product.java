@@ -15,7 +15,9 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
+    private String description;
     private int price;
+    private String imagepathe;
 
     @ManyToOne
     private Category category;
@@ -31,12 +33,24 @@ public class Product {
     public void setCategory(Category category) {
         this.category = category;
     }
+    
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+    
+
+    public void setImagepathe(String imagepathe) {
+        this.imagepathe = imagepathe;
+    }
 
     public HashMap<String, Object> toHashMap() {
         HashMap<String, Object> map = new HashMap<>();
         map.put("id", this.id);
         map.put("name", this.name);
+        map.put("description", this.description);
         map.put("price", this.price);
+        map.put("imagepathe", this.imagepathe);
         map.put("category", this.category.toHashMap());
         return map;
     }

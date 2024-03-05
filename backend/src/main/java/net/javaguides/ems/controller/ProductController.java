@@ -47,7 +47,9 @@ public class ProductController {
     public HashMap<String, Object> addProduct(@RequestBody Map<String, Object> payload) {
         Product product = new Product();
         product.setName((String) payload.get("name"));
+        product.setDescription((String) payload.get("description"));
         product.setPrice((int) payload.get("price"));
+        product.setImagepathe((String) payload.get("imagepathe"));
         int category = (int) payload.get("category");
         product.setCategory(this.categoryRepository.getReferenceById(category));
         this.productRepository.save(product);
@@ -69,7 +71,9 @@ public class ProductController {
         Product product = this.productRepository.findById(id).orElse(null);
         if (product != null) {
             product.setName((String) payload.get("name"));
+            product.setDescription((String) payload.get("description"));
             product.setPrice((int) payload.get("price"));
+            product.setImagepathe((String) payload.get("imagepathe"));
             int category = (int) payload.get("category");
             product.setCategory(this.categoryRepository.getReferenceById(category));
             this.productRepository.save(product);
