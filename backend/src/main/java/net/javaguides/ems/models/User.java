@@ -1,6 +1,7 @@
 package net.javaguides.ems.models;
 
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -68,6 +69,15 @@ public class User implements UserDetails {
     @Override
     public String getUsername() {
         return email;
+    }
+
+    public HashMap<String, Object> toHashMap() {
+        HashMap<String, Object> map = new HashMap<String, Object>();
+        map.put("id", this.id);
+        map.put("name", this.name);
+        map.put("email", this.email);
+        map.put("role", this.role);
+        return map;
     }
 
 }

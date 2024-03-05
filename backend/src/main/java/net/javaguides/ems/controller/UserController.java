@@ -1,9 +1,14 @@
 package net.javaguides.ems.controller;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -64,4 +69,23 @@ public class UserController {
         return user;
     }
 
+    @GetMapping("")
+    public List<HashMap<String, Object>> getUsers() {
+        List<User> users = this.userRepository.findAll();
+        ArrayList<HashMap<String, Object>> list = new ArrayList<HashMap<String, Object>>();
+        for (User user : users) {
+            list.add(user.toHashMap());
+        }
+        return list;
+    }
+
+    @DeleteMapping("/{id}")
+    public HashMap<String, Object> deleteUser(@PathVariable int id) {
+        User user = this.userRepository.findById(id).orElse(null);
+        if (user != null) {
+            this.userRepository.delete(user);
+            return user.toHashMap();
+        }
+        return null;
+    }
 }

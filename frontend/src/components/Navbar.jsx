@@ -63,6 +63,9 @@ const NavigationBar = () => {
                       <LinkContainer to="/list-category">
                         <NavDropdown.Item>Mange Categories</NavDropdown.Item>
                       </LinkContainer>
+                      <LinkContainer to="/list-user">
+                        <NavDropdown.Item>Mange Users</NavDropdown.Item>
+                      </LinkContainer>
                     </>
                   ) : (
                     <>
