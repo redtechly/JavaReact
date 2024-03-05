@@ -49,13 +49,13 @@ const NavigationBar = () => {
                 )}
                 <NavDropdown title={userInfo.user.name} id="user-nav-dropdown">
                   {/* Conditional rendering based on user role */}
-                  {true ? (
+                  {userInfo.user.role === "ADMIN" ? (
                     <>
-                      <LinkContainer to='/updateuserform/${session.get("user_id")'>
-                        <NavDropdown.Item>Admin Profile</NavDropdown.Item>
-                      </LinkContainer>
                       <LinkContainer to="/dash">
                         <NavDropdown.Item>Admin Dashboard</NavDropdown.Item>
+                      </LinkContainer>
+                      <LinkContainer to="/updateuser">
+                        <NavDropdown.Item>Admin Profile</NavDropdown.Item>
                       </LinkContainer>
                       <LinkContainer to="/list-product">
                         <NavDropdown.Item>Mange Products</NavDropdown.Item>
@@ -72,7 +72,6 @@ const NavigationBar = () => {
                       <LinkContainer to="/displaycart">
                         <NavDropdown.Item>Cart</NavDropdown.Item>
                       </LinkContainer>
-                      {/* Add more user links as needed */}
                     </>
                   )}
                   <div onClick={signoutHandler}>

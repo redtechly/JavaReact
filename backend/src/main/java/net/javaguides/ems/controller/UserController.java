@@ -1,22 +1,21 @@
 package net.javaguides.ems.controller;
 
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import jakarta.servlet.http.HttpServletRequest;
 import net.javaguides.ems.models.AuthenticationResponse;
 import net.javaguides.ems.models.User;
 import net.javaguides.ems.repository.UserRepository;
 import net.javaguides.ems.service.AuthenticationService;
-import net.javaguides.ems.service.JWTService;
 
 @CrossOrigin(origins = "http://localhost:3030")
 @RestController
@@ -25,9 +24,9 @@ public class UserController {
     @Autowired
     private AuthenticationService authService;
     @Autowired
-    private JWTService jwtService;
-    @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @PostMapping("/register")
     public ResponseEntity<AuthenticationResponse> register(
@@ -41,15 +40,28 @@ public class UserController {
         return ResponseEntity.ok(authService.authenticate(request));
     }
 
-    @GetMapping("/hello")
-    public Optional<User> hello(HttpServletRequest request) {
-        String authHeader = request.getHeader("Authorization");
-        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
-            return null;
+    @PutMapping("/{id}")
+    public User updateUser(@RequestBody User user, @PathVariable int id) {
+        User repoUser = this.userRepository.findById(id).orElse(null);
+        if (repoUser != null) {
+            repoUser.setName(user.getName());
+            repoUser.setEmail(user.getEmail());
+            if (user.getPassword() != "") {
+                repoUser.setPassword(passwordEncoder.encode(user.getPassword()));
+            }
+            if (user.getRole() != null) {
+                repoUser.setRole(user.getRole());
+            }
+            this.userRepository.save(repoUser);
+            return repoUser;
         }
-        String token = authHeader.substring(7);
-        String username = jwtService.extractUsername(token);
-        return userRepository.findByEmail(username);
+        return null;
+    }
+
+    @GetMapping("/{id}")
+    public User getUser(@PathVariable int id) {
+        User user = this.userRepository.findById(id).orElse(null);
+        return user;
     }
 
 }

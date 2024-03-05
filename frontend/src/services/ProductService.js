@@ -11,6 +11,10 @@ export const getProduct = async (id) => {
   const response = await axios.get(`${REST_API_BASE_URL}/product/${id}`);
   return response.data;
 };
+export const getUser = async (id) => {
+  const response = await axios.get(`${REST_API_BASE_URL}/user/${id}`);
+  return response.data;
+};
 
 export const deleteProduct = async (id) => {
   try {
