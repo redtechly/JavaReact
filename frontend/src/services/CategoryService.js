@@ -30,6 +30,6 @@ export const deleteCategory = async (id) => {
     toast.success("Category deleted successfully");
     return response.data;
   } catch (error) {
-    toast.error("Cannot delete category, it is being used by a food");
+    toast.error("Cannot delete category, it is being used by a product");
   }
 };

@@ -9,7 +9,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 
 @Entity
-public class Food {
+public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

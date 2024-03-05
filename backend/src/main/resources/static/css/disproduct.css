@@ -1,0 +1,158 @@
+.details {
+    position: relative;
+    width: 100%;
+    padding: 20px;
+    display: grid;
+    grid-template-columns:1fr;
+    grid-gap: 30px;
+    /* margin-top: 10px; */
+  }
+  
+  .details .recentOrders {
+    position: relative;
+    display: grid;
+    min-height: 250px;
+    background: var(--white);
+    padding: 20px;
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+    border-radius: 20px;
+  }
+  
+  .details .cardHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  .cardHeader h2 {
+    font-weight: 600;
+    color: var(--blue);
+  }
+  .cardHeader .btn {
+    position: relative;
+    padding: 5px 10px;
+    background: var(--blue);
+    text-decoration: none;
+    color: var(--white);
+    border-radius: 6px;
+  }
+  
+  .details table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 2px;
+  }
+  .details table thead td {
+    font-weight: 600;
+  }
+  .details .recentOrders table tr {
+    color: var(--black1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  .details .recentOrders table tr:last-child {
+    border-bottom: none;
+  }
+  .details .recentOrders table tbody tr:hover {
+    background: var(--blue);
+    color: var(--white);
+  }
+  .details .recentOrders table tr td {
+    padding: 1px;
+  }
+  .details .recentOrders table tr td:last-child {
+    text-align: end;
+  }
+  .details .recentOrders table tr td:nth-child(2) {
+    text-align: end;
+  }
+  .details .recentOrders table tr td:nth-child(3) {
+    text-align: center;
+  }
+  .edit {
+    padding: 2px 4px;
+    background: #8de02c;
+    color: var(--white);
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+    border:0px;
+  }
+  .edit:hover{
+    background: #305902;
+  }
+  
+  .delete{
+    padding: 2px 4px;
+    background: #f00;
+    color: var(--white);
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+    border:0px;
+  }
+  .delete:hover{
+    background: rgb(94, 1, 1);
+  }
+  
+
+  @media (max-width: 991px) {
+    .navigation {
+      left: -300px;
+    }
+    .navigation.active {
+      width: 300px;
+      left: 0;
+    }
+    .main {
+        width: 100%;
+        left: 0;
+      }
+
+      .main {
+        width: 100%;
+        left: 0;
+      }
+      .main.active {
+        left: 300px;
+      }
+   
+  }
+  
+  @media (max-width: 768px) {
+    .details {
+      grid-template-columns: 1fr;
+    }
+   
+  }
+  
+  @media (max-width: 480px) {
+   
+    .cardHeader h2 {
+      font-size: 20px;
+    }
+   
+  
+    .user {
+        min-width: 40px;
+      }
+      .navigation {
+        width: 45%;
+        left: -100%;
+        z-index: 1000;
+      }
+      .navigation.active {
+        width: 50%;
+        left: 0;
+      }
+      .toggle {
+        z-index: 10001;
+      }
+      .main.active .toggle {
+        color: #0f0e0e;
+        position: relative;
+        right: 0;
+        left: initial;
+      }
+    
+   
+  }
+  

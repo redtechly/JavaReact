@@ -1,12 +1,21 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Navbar, Nav, NavDropdown, Container } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import "../../css/homepage.css";
+import { Store } from "../Store";
 const NavigationBar = () => {
+  const { state, dispatch: ctxDispatch } = useContext(Store);
+  const { userInfo } = state;
+  const signoutHandler = () => {
+    ctxDispatch({ type: "USER_SIGNOUT" });
+    localStorage.removeItem("userInfo");
+    localStorage.removeItem("shippingAddress");
+    localStorage.removeItem("paymentMethod");
+  };
   return (
     <Navbar expand="lg" sticky="top">
       <Container>
-        <LinkContainer to="/home">
+        <LinkContainer to="/">
           <Navbar.Brand>
             <img src="/images/logo.png" alt="logo" />
           </Navbar.Brand>
@@ -16,9 +25,6 @@ const NavigationBar = () => {
         </Navbar.Toggle>
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
-            <LinkContainer to="/home">
-              <Nav.Link>Home</Nav.Link>
-            </LinkContainer>
             <NavDropdown title="Products" id="basic-nav-dropdown">
               <LinkContainer to="/category/medications">
                 <NavDropdown.Item>Medications</NavDropdown.Item>
@@ -34,15 +40,14 @@ const NavigationBar = () => {
             <LinkContainer to="/about-us">
               <Nav.Link>About Us</Nav.Link>
             </LinkContainer>
-            {/* Conditional rendering based on user session */}
-            {true && (
+            {userInfo && (
               <>
                 {true && (
                   <LinkContainer to="/chats">
                     <Nav.Link>Message</Nav.Link>
                   </LinkContainer>
                 )}
-                <NavDropdown title={"user_name"} id="user-nav-dropdown">
+                <NavDropdown title={userInfo.user.name} id="user-nav-dropdown">
                   {/* Conditional rendering based on user role */}
                   {true ? (
                     <>
@@ -51,6 +56,12 @@ const NavigationBar = () => {
                       </LinkContainer>
                       <LinkContainer to="/dash">
                         <NavDropdown.Item>Admin Dashboard</NavDropdown.Item>
+                      </LinkContainer>
+                      <LinkContainer to="/list-product">
+                        <NavDropdown.Item>Mange Products</NavDropdown.Item>
+                      </LinkContainer>
+                      <LinkContainer to="/list-category">
+                        <NavDropdown.Item>Mange Categories</NavDropdown.Item>
                       </LinkContainer>
                     </>
                   ) : (
@@ -64,18 +75,20 @@ const NavigationBar = () => {
                       {/* Add more user links as needed */}
                     </>
                   )}
-                  <LinkContainer to="/logout">
-                    <NavDropdown.Item>Logout</NavDropdown.Item>
-                  </LinkContainer>
+                  <div onClick={signoutHandler}>
+                    <LinkContainer to="/login">
+                      <NavDropdown.Item>Logout</NavDropdown.Item>
+                    </LinkContainer>
+                  </div>
                 </NavDropdown>
               </>
             )}
-            {false && (
+            {!userInfo && (
               <>
-                <LinkContainer to="/loginform">
+                <LinkContainer to="/login">
                   <Nav.Link>Login</Nav.Link>
                 </LinkContainer>
-                <LinkContainer to="/signupform">
+                <LinkContainer to="/signup">
                   <Nav.Link>SignUp</Nav.Link>
                 </LinkContainer>
               </>

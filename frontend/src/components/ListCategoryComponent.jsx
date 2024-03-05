@@ -18,21 +18,11 @@ const ListCategoryComponent = () => {
       <button
         className="btn btn-primary m-2"
         onClick={() => navigator("/add-category")}
+        style={{ float: "right" }}
       >
         Add Category
       </button>
-      <button
-        className="btn btn-primary m-2"
-        onClick={() => navigator("/add-food")}
-      >
-        Add Food
-      </button>
-      <button
-        className="btn btn-primary m-2"
-        onClick={() => navigator("/list-food")}
-      >
-        List Food
-      </button>
+
       <table className="table table-striped table-bordered">
         <thead>
           <tr>

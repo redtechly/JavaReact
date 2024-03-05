@@ -1,37 +1,26 @@
 import { useNavigate } from "react-router-dom";
 import { useQuery } from "react-query";
-import { deleteFood, listFoods } from "../services/FoodService";
+import { deleteProduct, listProducts } from "../services/ProductService";
 
-const ListFoodComponent = () => {
+const ListProductComponent = () => {
   const navigator = useNavigate();
 
   const {
-    data: allFood,
+    data: allProduct,
     isLoading,
     refetch,
-  } = useQuery("List Food", () => listFoods());
+  } = useQuery("List Product", () => listProducts());
 
   if (isLoading) return <h1>Loading</h1>;
   return (
     <div className="container">
-      <h2 className="text-center">List of Food</h2>
+      <h2 className="text-center">List of Product</h2>
       <button
         className="btn btn-primary m-2"
-        onClick={() => navigator("/add-food")}
+        onClick={() => navigator("/add-product")}
+        style={{ float: "right" }}
       >
-        Add Food
-      </button>
-      <button
-        className="btn btn-primary m-2"
-        onClick={() => navigator("/add-category")}
-      >
-        Add Category
-      </button>
-      <button
-        className="btn btn-primary m-2"
-        onClick={() => navigator("/list-category")}
-      >
-        List Categories
+        Add Product
       </button>
       <table className="table table-striped table-bordered">
         <thead>
@@ -44,17 +33,17 @@ const ListFoodComponent = () => {
           </tr>
         </thead>
         <tbody>
-          {allFood.map((food) => (
-            <tr key={food.id}>
-              <td>{food.id}</td>
-              <td>{food.name}</td>
-              <td>{food.price}</td>
-              <td>{food.category.name}</td>
+          {allProduct.map((product) => (
+            <tr key={product.id}>
+              <td>{product.id}</td>
+              <td>{product.name}</td>
+              <td>{product.price}</td>
+              <td>{product.category.name}</td>
               <td>
                 <button
                   className="btn btn-danger"
                   onClick={async () => {
-                    await deleteFood(Number(food.id));
+                    await deleteProduct(Number(product.id));
                     refetch();
                   }}
                 >
@@ -62,7 +51,7 @@ const ListFoodComponent = () => {
                 </button>
                 <button
                   className="btn btn-primary m-2"
-                  onClick={() => navigator(`/edit-food/${food.id}`)}
+                  onClick={() => navigator(`/edit-product/${product.id}`)}
                 >
                   Update
                 </button>
@@ -75,4 +64,4 @@ const ListFoodComponent = () => {
   );
 };
 
-export default ListFoodComponent;
+export default ListProductComponent;
