@@ -22,15 +22,11 @@ const ProductComponent = () => {
     await createProduct({ name, description, price, imagepathe, category });
     navigator("/list-product");
   };
-
   const handleImageChange = (e) => {
     const file = e.target.files[0];
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      setImagepathe(reader.result);
-    };
     if (file) {
-      reader.readAsDataURL(file);
+      // Set the image path to the file name
+      setImagepathe(file.name);
     }
   };
 
@@ -90,8 +86,14 @@ const ProductComponent = () => {
                   }}
                 ></input>
               </div>
-              <div className="form-group mb-2">z
+              <div className="form-group mb-2">
                 <label className="form-label">Image:</label>
+                <input
+                  type="text"
+                  name="imagepathe"
+                  value={imagepathe}
+                  className="form-control"
+                ></input>
                 <input
                   type="file"
                   accept="image/*"
@@ -99,13 +101,6 @@ const ProductComponent = () => {
                   className="form-control"
                   onChange={handleImageChange}
                 />
-                {imagepathe && (
-                  <img
-                    src={imagepathe}
-                    alt="Product Preview"
-                    style={{ marginTop: '10px', maxWidth: '100%' }}
-                  />
-                )}
               </div>
 
               <div className="form-group mb-2">

@@ -30,12 +30,9 @@ const ProductEdit = () => {
   );
   const handleImageChange = (e) => {
     const file = e.target.files[0];
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      setImagepathe(reader.result);
-    };
     if (file) {
-      reader.readAsDataURL(file);
+      // Set the image path to the file name
+      setImagepathe(file.name);
     }
   };
   // const saveProduct = async (e) => {
@@ -101,6 +98,12 @@ const ProductEdit = () => {
               </div>
               <div className="form-group mb-2">
                 <label className="form-label">Image:</label>
+                <input
+                  type="text"
+                  name="imagepathe"
+                  value={imagepathe}
+                  className="form-control"
+                ></input>
                 <input
                   type="file"
                   accept="image/*"
