@@ -27,7 +27,9 @@ const ListProductComponent = () => {
           <tr>
             <th>Id</th>
             <th>Name</th>
+            <th>Description</th>
             <th>Price</th>
+            <th>Image</th>
             <th>Category</th>
             <th>Actions</th>
           </tr>
@@ -37,7 +39,14 @@ const ListProductComponent = () => {
             <tr key={product.id}>
               <td>{product.id}</td>
               <td>{product.name}</td>
+              <td>{product.description}</td>
               <td>{product.price}</td>
+              <td> <img
+                    src={product.imagepathe}
+                    alt="Product Preview"
+                    style={{ marginTop: '10px', maxWidth: '100%' }}
+                  />  
+              </td>
               <td>{product.category.name}</td>
               <td>
                 <button
