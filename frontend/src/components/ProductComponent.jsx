@@ -90,17 +90,12 @@ const ProductComponent = () => {
                   }}
                 ></input>
               </div>
-              <div className="form-group mb-2">
-              <label className="form-label">Image:</label>
-                <input
-                  type="text"
-                  name="imagepathe"
-                  value={imagepathe}
-                  className="form-control"
-                ></input>
+              <div className="form-group mb-2">z
+                <label className="form-label">Image:</label>
                 <input
                   type="file"
                   accept="image/*"
+                  name="imagepathe"
                   className="form-control"
                   onChange={handleImageChange}
                 />
