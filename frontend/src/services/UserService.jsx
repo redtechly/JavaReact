@@ -1,6 +1,15 @@
 import axios from "axios";
 import { REST_API_BASE_URL } from "../App";
 
+export const registerUser = async (name, email, password) => {
+  const response = await axios.post(`${REST_API_BASE_URL}/user/register`, {
+    name,
+    email,
+    password,
+  });
+  return response.data;
+};
+
 export const getUser = async (id) => {
   const response = await axios.get(`${REST_API_BASE_URL}/user/${id}`);
   return response.data;

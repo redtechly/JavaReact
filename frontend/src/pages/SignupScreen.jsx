@@ -1,4 +1,3 @@
-import Axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
@@ -7,6 +6,7 @@ import { Helmet } from "react-helmet-async";
 import { useContext, useEffect, useState } from "react";
 import { Store } from "../Store";
 import { toast } from "react-toastify";
+import { registerUser } from "../services/UserService";
 
 export default function SignupScreen() {
   const navigate = useNavigate();
@@ -25,16 +25,12 @@ export default function SignupScreen() {
       return;
     }
     try {
-      const { data } = await Axios.post("/api/users/signup", {
-        name,
-        email,
-        password,
-      });
+      const data = await registerUser(name, email, password);
       ctxDispatch({ type: "USER_SIGNIN", payload: data });
       localStorage.setItem("userInfo", JSON.stringify(data));
       navigate("/");
     } catch (err) {
-      toast.error(getError(err));
+      toast.error(err);
     }
   };
 
@@ -55,7 +51,11 @@ export default function SignupScreen() {
       <Form onSubmit={submitHandler}>
         <Form.Group className="mb-3" controlId="name">
           <Form.Label>Name</Form.Label>
-          <Form.Control onChange={(e) => setName(e.target.value)} required />
+          <Form.Control
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+          />
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="email">
@@ -63,6 +63,7 @@ export default function SignupScreen() {
           <Form.Control
             type="email"
             required
+            value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
         </Form.Group>
@@ -71,12 +72,14 @@ export default function SignupScreen() {
           <Form.Control
             type="password"
             required
+            value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
           <Form.Group className="mb-3" controlId="confirmPassword">
             <Form.Label>Confirm Password</Form.Label>
             <Form.Control
               type="password"
+              value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
               required
             />

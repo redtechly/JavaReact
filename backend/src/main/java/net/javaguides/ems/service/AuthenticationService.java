@@ -1,6 +1,7 @@
 package net.javaguides.ems.service;
 
 import net.javaguides.ems.models.AuthenticationResponse;
+import net.javaguides.ems.models.Role;
 import net.javaguides.ems.models.User;
 import net.javaguides.ems.repository.UserRepository;
 
@@ -33,7 +34,7 @@ public class AuthenticationService {
         user.setName(request.getName());
         user.setEmail(request.getEmail());
         user.setPassword(passwordEncoder.encode(request.getPassword()));
-        user.setRole(request.getRole());
+        user.setRole(Role.USER);
         user = userRepository.save(user);
 
         String jwt = jwtService.generateToken(user);
