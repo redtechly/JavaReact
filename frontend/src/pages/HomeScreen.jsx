@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import {
   Carousel,
   Card,
@@ -85,10 +86,18 @@ const MainPage = () => {
             </Col>
           ))}
         </Row>
+        
 
         <div className="d-flex justify-content-center mt-5">
           <Button variant="primary">Show all products</Button>
+
+          <Link to="/add-product">
+          <Button variant="primary">Add Product</Button>
+        </Link>
         </div>
+
+        
+       
       </Container>
 
       {/* Discount Section */}
@@ -108,6 +117,7 @@ const MainPage = () => {
               </strong>
             </p>
             <Button variant="primary">Buy Now</Button>
+            
           </Col>
           <Col lg={7} md={5}>
             <Image src="images/medicines.jpg" alt="" fluid />

@@ -14,7 +14,7 @@ export const getProduct = async (id) => {
 
 export const deleteProduct = async (id) => {
   try {
-    const response = await axios.delete(`${REST_API_BASE_URL}/product/${id}`);
+    const response = await axios.delete(`${REST_API_BASE_URL}/deleteproduct/${id}`);
     toast.success("Product deleted successfully");
     return response.data;
   } catch (error) {
@@ -22,10 +22,20 @@ export const deleteProduct = async (id) => {
   }
 };
 
-export const createProduct = async (product) => {
-  const response = await axios.post(`${REST_API_BASE_URL}/product`, product);
+// export const createProduct = async ({ category, ...productData }) => {
+//   const dataToSend = {
+//     ...productData,
+//     categoryName: category.name // Assuming category.name is the name of the category
+//   };
+
+//   const response = await axios.post(`${REST_API_BASE_URL}/addproduct`, dataToSend);
+//   return response.data;
+// };
+export const createProduct = async (productData) => {
+  const response = await axios.post(`${REST_API_BASE_URL}/addproduct`, productData);
   return response.data;
 };
+
 
 export const updateProduct = async (id, product) => {
   const response = await axios.put(

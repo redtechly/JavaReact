@@ -8,8 +8,8 @@ const ProductComponent = () => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState(0);
-  const [imagepathe, setImagepathe] = useState("");
-  const [category, setCategory] = useState(0);
+  const [imagepath, setImagepathe] = useState("");
+  const [category, setCategory] = useState(null);
   const navigator = useNavigate();
   const {
     data: categories,
@@ -19,7 +19,7 @@ const ProductComponent = () => {
   } = useQuery("List Categoty", () => listCategories());
   const saveProduct = async (e) => {
     e.preventDefault();
-    await createProduct({ name, description, price, imagepathe, category });
+    await createProduct({ name, description, price, imagepath, categoryName: category });
     navigator("/list-product");
   };
   const handleImageChange = (e) => {
@@ -91,7 +91,7 @@ const ProductComponent = () => {
                 <input
                   type="text"
                   name="imagepathe"
-                  value={imagepathe}
+                  value={imagepath}
                   className="form-control"
                 ></input>
                 <input
@@ -103,18 +103,36 @@ const ProductComponent = () => {
                 />
               </div>
 
-              <div className="form-group mb-2">
+              {/* <div className="form-group mb-2">
                 <label className="form-label">Category:</label>
                 <select
                   defaultValue=""
                   className="form-control"
-                  onChange={(e) => setCategory(Number(e.target.value))}
+                  // onChange={(e) => setCategory(Number(e.target.value))}
+                  onChange={(e) => setCategory(categories.find(cat => cat.id === Number(e.target.value)))}
                 >
                   <option value="" disabled>
                     Choose Category
                   </option>
                   {categories.map((category) => (
                     <option key={category.id} value={category.id}>
+                      {category.name}
+                    </option>
+                  ))}
+                </select>
+              </div> */}
+              <div className="form-group mb-2">
+                <label className="form-label">Category:</label>
+                <select
+                  defaultValue=""
+                  className="form-control"
+                  onChange={(e) => setCategory(e.target.value)}
+                >
+                  <option value="" disabled>
+                    Choose Category
+                  </option>
+                  {categories.map((category) => (
+                    <option key={category.id} value={category.name}>
                       {category.name}
                     </option>
                   ))}
