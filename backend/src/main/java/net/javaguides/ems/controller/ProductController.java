@@ -81,6 +81,18 @@ public class ProductController {
     }
 
 
+    @DeleteMapping("/deleteproduct/{id}")
+    public ResponseEntity<HashMap<String, Object>> deleteProduct(@PathVariable int id) {
+        Product product = this.productRepository.findById(id).orElse(null);
+        if (product != null) {
+            this.productRepository.delete(product);
+            HashMap<String, Object> response = product.toHashMap();
+            return ResponseEntity.status(HttpStatus.OK).body(response);
+        }
+        return null;
+    }
+
+
     // @PostMapping("/product")
     // public HashMap<String, Object> addProduct(@RequestBody Map<String, Object> payload) {
     //     Product product = new Product();
@@ -94,15 +106,15 @@ public class ProductController {
     //     return product.toHashMap();
     // }
 
-    @DeleteMapping("/product/{id}")
-    public HashMap<String, Object> deleteProduct(@PathVariable int id) {
-        Product product = this.productRepository.findById(id).orElse(null);
-        if (product != null) {
-            this.productRepository.delete(product);
-            return product.toHashMap();
-        }
-        return null;
-    }
+    // @DeleteMapping("/product/{id}")
+    // public HashMap<String, Object> deleteProduct(@PathVariable int id) {
+    //     Product product = this.productRepository.findById(id).orElse(null);
+    //     if (product != null) {
+    //         this.productRepository.delete(product);
+    //         return product.toHashMap();
+    //     }
+    //     return null;
+    // }
 
     @PutMapping("/product/{id}")
     public HashMap<String, Object> updateProduct(@PathVariable int id, @RequestBody Map<String, Object> payload) {
