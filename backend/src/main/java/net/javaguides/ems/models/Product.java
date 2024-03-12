@@ -22,6 +22,19 @@ public class Product {
     @ManyToOne
     private Category category;
 
+    public Product() {
+    }
+
+
+    public Product(String name, String description, int price, String imagepathe, Category category) {
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.imagepathe = imagepathe;
+        this.category = category;
+    }
+
+
     public void setName(String name) {
         this.name = name;
     }
@@ -29,6 +42,16 @@ public class Product {
     public void setPrice(int price) {
         this.price = price;
     }
+
+    public Category getCategory() {
+        return category;
+    }
+    
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
 
     public void setCategory(Category category) {
         this.category = category;

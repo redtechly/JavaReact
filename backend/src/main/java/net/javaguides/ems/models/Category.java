@@ -14,13 +14,31 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
+
+
+    public Category() {
+    }
+
+    // Constructor with name parameter
+    public Category(String name) {
+        this.name = name;
+    }
+
     public void setName(String name){
         this.name= name;
     }
+    public int getId() {
+        return id;
+    }
+
         public HashMap<String, Object> toHashMap(){
             HashMap<String, Object> map = new HashMap<>();
             map.put("id", this.id);
             map.put("name", this.name);
             return map;
+        }
+
+        public String getName() {
+            return name;
         }
 }
