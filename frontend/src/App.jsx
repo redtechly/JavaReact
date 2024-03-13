@@ -34,6 +34,8 @@ import DeleteUsers from "./components/DeleteUsers";
 import DisplayUsers from "./components/DisplayUsers";
 
 
+import CartPage from "./pages/CartPage";
+
 // import Contact from "./pages/Contact";
 // import AboutUs from "./pages/AboutUs";
 export const REST_API_BASE_URL = "http://localhost:8081/api";
@@ -62,6 +64,8 @@ function App() {
 
             <Route path="/contact" element={<ContactUs />} />
             <Route path="/deleteusers" element={<DeleteUsers/>} />
+
+            <Route path="/cartpage" element={<CartPage />} />
 
             <Route path="/about-us" element={<AboutUsScreen/>} />
             <Route path="/Display-users" element={<DisplayUsers/>} />

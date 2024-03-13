@@ -80,7 +80,7 @@ const NavigationBar = () => {
                       <LinkContainer to="/updateuserform">
                         <NavDropdown.Item>User Profile</NavDropdown.Item>
                       </LinkContainer>
-                      <LinkContainer to="/displaycart">
+                      <LinkContainer to="/cartpage">
                         <NavDropdown.Item>Cart</NavDropdown.Item>
                       </LinkContainer>
                     </>
