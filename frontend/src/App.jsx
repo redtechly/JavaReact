@@ -25,6 +25,11 @@ import TestPage from "./pages/TestPage";
 import ProfileScreen from "./components/ProfileScreen";
 import ListUserComponent from "./components/ListUserComponent";
 import ChatPage from "./pages/ChatPage";
+
+import ContactUs from "./pages/ContactUsPage";
+
+import AboutUsScreen from "./pages/AboutUsScreen";
+
 // import Contact from "./pages/Contact";
 // import AboutUs from "./pages/AboutUs";
 export const REST_API_BASE_URL = "http://localhost:8081/api";
@@ -50,6 +55,11 @@ function App() {
             <Route path="/delete-role" element={<DeleteRole />} />
             <Route path="/Permissionpage" element={<Permissionpage />} />
             <Route path="/chatpage" element={<ChatPage />} />
+
+            <Route path="/contact" element={<ContactUs />} />
+
+            <Route path="/about-us" element={<AboutUsScreen/>} />
+
             
               <Route
                 path="/list-product"
