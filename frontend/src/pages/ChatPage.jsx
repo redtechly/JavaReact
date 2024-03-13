@@ -5,7 +5,7 @@ function ChatPage() {
   const [messages, setMessages] = useState([
  
     { text: "Hi there! I'm the pharamcist how i can help you", sender: 'bot', timestamp: new Date() },
-    { text: 'Hello! How can I help you?', sender: 'user', timestamp: new Date() },
+    { text: 'Hello! Fathy?', sender: 'user', timestamp: new Date() },
   ]);
   const [inputText, setInputText] = useState(''); // State to hold input text
   const chatBottomRef = useRef(null); // Ref to keep chat scrolled to bottom
