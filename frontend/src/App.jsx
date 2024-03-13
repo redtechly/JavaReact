@@ -19,6 +19,7 @@ import SignupScreen from "./pages/SignupScreen";
 import TestPage from "./pages/TestPage";
 import ProfileScreen from "./components/ProfileScreen";
 import ListUserComponent from "./components/ListUserComponent";
+import ChatPage from "./pages/ChatPage";
 // import Contact from "./pages/Contact";
 // import AboutUs from "./pages/AboutUs";
 export const REST_API_BASE_URL = "http://localhost:8081/api";
@@ -38,6 +39,8 @@ function App() {
               <Route path="/test" element={<TestPage />} />
               <Route path="/signup" element={<SignupScreen />} />
               <Route path="/updateuser" element={<ProfileScreen />} />
+              <Route path="/chatpage" element={<ChatPage/>} />
+
               <Route
                 path="/list-product"
                 element={<ListProductComponent />}

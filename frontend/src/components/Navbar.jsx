@@ -51,8 +51,8 @@ const NavigationBar = () => {
             {userInfo && (
               <>
                 {true && (
-                  <LinkContainer to="/chats">
-                    <Nav.Link>Message</Nav.Link>
+                  <LinkContainer to="/chatpage">
+                    <Nav.Link >Message</Nav.Link>
                   </LinkContainer>
                 )}
                 <NavDropdown title={userInfo.user.name} id="user-nav-dropdown">
