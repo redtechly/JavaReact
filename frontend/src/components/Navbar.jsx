@@ -1,7 +1,9 @@
 import React, { useContext } from "react";
+import { listCategories } from "../services/CategoryService";
 import { Navbar, Nav, NavDropdown, Container } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import "../../css/homepage.css";
+import { useQuery } from "react-query"; 
 import { Store } from "../Store";
 const NavigationBar = () => {
   const { state, dispatch: ctxDispatch } = useContext(Store);
@@ -12,6 +14,14 @@ const NavigationBar = () => {
     localStorage.removeItem("shippingAddress");
     localStorage.removeItem("paymentMethod");
   };
+  const {
+    data: categories,
+    isLoading,
+    isError,
+    error,
+  } = useQuery("List Categoty", () => listCategories());
+  if (isLoading) return <h1>Loading</h1>;
+  if (isError) return <h1>Error {error}</h1>;
   return (
     <Navbar expand="lg" sticky="top">
       <Container>
@@ -25,15 +35,13 @@ const NavigationBar = () => {
         </Navbar.Toggle>
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
-            <NavDropdown title="Products" id="basic-nav-dropdown">
-              <LinkContainer to="/category/medications">
-                <NavDropdown.Item>Medications</NavDropdown.Item>
-              </LinkContainer>
-              <LinkContainer to="/category/skin_care">
-                <NavDropdown.Item>Skin Care</NavDropdown.Item>
-              </LinkContainer>
-              {/* Add more categories as needed */}
-            </NavDropdown>
+          <NavDropdown title="Categories" id="basic-nav-dropdown">
+      {categories.map((category) => (
+        <LinkContainer key={category.id} to={`/category/${category.name}`}>
+          <NavDropdown.Item>{category.name}</NavDropdown.Item>
+        </LinkContainer>
+      ))}
+    </NavDropdown>
             <LinkContainer to="/contact">
               <Nav.Link>Contact</Nav.Link>
             </LinkContainer>
@@ -43,8 +51,8 @@ const NavigationBar = () => {
             {userInfo && (
               <>
                 {true && (
-                  <LinkContainer to="/chats">
-                    <Nav.Link>Message</Nav.Link>
+                  <LinkContainer to="/chatpage">
+                    <Nav.Link >Message</Nav.Link>
                   </LinkContainer>
                 )}
                 <NavDropdown title={userInfo.user.name} id="user-nav-dropdown">
