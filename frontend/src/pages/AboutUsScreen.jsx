@@ -19,6 +19,7 @@ function AboutUsScreen() {
             <img src="../../images/fathy.jpg" alt="Team Member 1" />
             <h3>Fathy Nassef</h3>
             <p>Software Engineer</p>
+            <p>Team Leader</p>
           </div>
           <div className="team-member">
             <img src="../../images/elkmeshi.jpeg" alt="Team Member 2" />
