@@ -94,6 +94,10 @@ const MainPage = () => {
           <Link to="/add-product">
           <Button variant="primary">Add Product</Button>
         </Link>
+
+        <Link to="/Permissionpage">
+        <button>Open Permission Page</button>
+      </Link>
         </div>
 
         

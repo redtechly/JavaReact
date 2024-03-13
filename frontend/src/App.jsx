@@ -10,6 +10,11 @@ import "react-toastify/dist/ReactToastify.css";
 import CategoryEdit from "./components/CategoryEdit";
 import UpdateUserScreen from "./components/UpdateUserScreen";
 import ProductEdit from "./components/ProductEdit";
+import Permissionpage from "./components/Permissionpage";
+import CreateRole from "./components/CreateRole";
+import AssignRoleToUser from "./components/AssignRoleToUser";
+import EditRole from "./components/EditRole";
+import DeleteRole from "./components/DeleteRole";
 import HomeScreen from "./pages/HomeScreen";
 import HeaderComponent from "./components/Navbar";
 import FooterComponent from "./components/Footer";
@@ -38,6 +43,11 @@ function App() {
               <Route path="/test" element={<TestPage />} />
               <Route path="/signup" element={<SignupScreen />} />
               <Route path="/updateuser" element={<ProfileScreen />} />
+              <Route path="/create-role" element={<CreateRole />} />
+            <Route path="/assign-role" element={<AssignRoleToUser />} />
+            <Route path="/edit-role" element={<EditRole />} />
+            <Route path="/delete-role" element={<DeleteRole />} />
+            <Route path="/Permissionpage" element={<Permissionpage />} />
               <Route
                 path="/list-product"
                 element={<ListProductComponent />}
