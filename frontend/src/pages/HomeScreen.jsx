@@ -106,6 +106,9 @@ const MainPage = () => {
         <Link to="/Permissionpage">
         <Button variant="primary"> Permissions</Button>
       </Link>
+        <Link to="/User-management">
+        <Button variant="primary"> Users management</Button>
+      </Link>
         </div>
 
         
