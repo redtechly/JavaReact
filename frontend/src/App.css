@@ -139,3 +139,111 @@
 .contact-form button:hover {
   background-color: #0056b3;
 }
+
+.userManagementContainer {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.userManagementContainer h2 {
+  text-align: center;
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.userOptions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.userOptions .userOptionLink {
+  margin-left: 20px;
+}
+
+.userOptions .userOptionLink:last-child {
+  margin-left: 0;
+}
+
+.userOptions Button {
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 6px;
+}
+
+.userOptions Button:hover {
+  opacity: 0.8;
+}
+
+.userOptions Button:active {
+  transform: translateY(1px);
+}
+.deleteUsersContainer {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.deleteUsersContainer h2 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.deleteUsersContainer div {
+  display: flex;
+  align-items: center;
+}
+
+.deleteUsersContainer select {
+  flex: 1;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  margin-right: 10px;
+  background-color: #fff;
+}
+
+.deleteUsersContainer select:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.deleteUsersContainer select option {
+  font-size: 16px;
+}
+
+.deleteUsersContainer button {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 6px;
+  background-color: #dc3545;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.deleteUsersContainer button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.deleteUsersContainer button:hover:not(:disabled) {
+  background-color: #c82333;
+}
+
+.deleteUsersContainer button:focus {
+  outline: none;
+}

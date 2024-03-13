@@ -29,6 +29,10 @@ import ChatPage from "./pages/ChatPage";
 import ContactUs from "./pages/ContactUsPage";
 
 import AboutUsScreen from "./pages/AboutUsScreen";
+import UserManagement from "./components/UserMnagement";
+import DeleteUsers from "./components/DeleteUsers";
+import DisplayUsers from "./components/DisplayUsers";
+
 
 // import Contact from "./pages/Contact";
 // import AboutUs from "./pages/AboutUs";
@@ -57,14 +61,21 @@ function App() {
             <Route path="/chatpage" element={<ChatPage />} />
 
             <Route path="/contact" element={<ContactUs />} />
+            <Route path="/deleteusers" element={<DeleteUsers/>} />
 
             <Route path="/about-us" element={<AboutUsScreen/>} />
-
+            <Route path="/Display-users" element={<DisplayUsers/>} />
             
               <Route
                 path="/list-product"
                 element={<ListProductComponent />}
               ></Route>
+          
+              <Route
+                path="User-management"
+                element={<UserManagement/>}
+              ></Route>
+
               <Route path="/edit-product/:id" element={<ProductEdit />}></Route>
               <Route path="/list-user" element={<ListUserComponent />}></Route>
               <Route
