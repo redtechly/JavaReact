@@ -24,6 +24,7 @@ import SignupScreen from "./pages/SignupScreen";
 import TestPage from "./pages/TestPage";
 import ProfileScreen from "./components/ProfileScreen";
 import ListUserComponent from "./components/ListUserComponent";
+import ChatPage from "./pages/ChatPage";
 // import Contact from "./pages/Contact";
 // import AboutUs from "./pages/AboutUs";
 export const REST_API_BASE_URL = "http://localhost:8081/api";
@@ -48,6 +49,8 @@ function App() {
             <Route path="/edit-role" element={<EditRole />} />
             <Route path="/delete-role" element={<DeleteRole />} />
             <Route path="/Permissionpage" element={<Permissionpage />} />
+            <Route path="/chatpage" element={<ChatPage />} />
+            
               <Route
                 path="/list-product"
                 element={<ListProductComponent />}
