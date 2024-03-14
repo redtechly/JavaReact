@@ -59,7 +59,7 @@ const NavigationBar = () => {
                   {/* Conditional rendering based on user role */}
                   {userInfo.user.role === "ADMIN" ? (
                     <>
-                      <LinkContainer to="/dash">
+                      <LinkContainer to="/Dashboard">
                         <NavDropdown.Item>Admin Dashboard</NavDropdown.Item>
                       </LinkContainer>
                       <LinkContainer to="/updateuser">

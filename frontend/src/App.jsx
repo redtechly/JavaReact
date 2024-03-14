@@ -32,9 +32,11 @@ import AboutUsScreen from "./pages/AboutUsScreen";
 import UserManagement from "./components/UserMnagement";
 import DeleteUsers from "./components/DeleteUsers";
 import DisplayUsers from "./components/DisplayUsers";
+import Dashboardpage from "./pages/Dashboard";
 
 
 import CartPage from "./pages/CartPage";
+
 
 // import Contact from "./pages/Contact";
 // import AboutUs from "./pages/AboutUs";
@@ -61,6 +63,7 @@ function App() {
             <Route path="/delete-role" element={<DeleteRole />} />
             <Route path="/Permissionpage" element={<Permissionpage />} />
             <Route path="/chatpage" element={<ChatPage />} />
+            <Route path="/Dashboard" element={<Dashboardpage />} />
 
             <Route path="/contact" element={<ContactUs />} />
             <Route path="/deleteusers" element={<DeleteUsers/>} />

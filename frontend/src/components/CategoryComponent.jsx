@@ -18,7 +18,7 @@ const CategoryComponent = () => {
       <br /> <br />
       <button
         className="btn btn-primary"
-        onClick={() => navigator("/list-category")}
+        onClick={() => navigator("/Dashboard")}
       >
         Go Back
       </button>

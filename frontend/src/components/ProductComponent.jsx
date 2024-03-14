@@ -37,7 +37,7 @@ const ProductComponent = () => {
       <br /> <br />
       <button
         className="btn btn-primary"
-        onClick={() => navigator("/")}
+        onClick={() => navigator("/Dashboard")}
       >
         Go Back
       </button>

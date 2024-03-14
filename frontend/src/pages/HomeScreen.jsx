@@ -88,7 +88,7 @@ const MainPage = () => {
         </Row>
         
 
-        <div className="d-flex justify-content-center mt-5">
+      {/*  <div className="d-flex justify-content-center mt-5">
           
         <Link to="/list-product">
           <Button variant="primary">All products</Button>
@@ -109,7 +109,7 @@ const MainPage = () => {
         <Link to="/User-management">
         <Button variant="primary"> Users management</Button>
       </Link>
-        </div>
+          </div>*/}
 
         
        
