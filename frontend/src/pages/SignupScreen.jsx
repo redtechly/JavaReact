@@ -14,6 +14,9 @@ export default function SignupScreen() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  
+  const [address, setAddress] = useState("");
+  const [age, setAge] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
   const { state, dispatch: ctxDispatch } = useContext(Store);
@@ -75,6 +78,27 @@ export default function SignupScreen() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
+
+        <Form.Group className="mb-3" controlId="address">
+          <Form.Label>Address</Form.Label>
+          <Form.Control
+            type="text"
+            required
+            value={address}
+            onChange={(e) => setAddress(e.target.value)}
+          />
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="age">
+          <Form.Label>Age</Form.Label>
+          <Form.Control
+            type="text"
+            required
+            value={age}
+            onChange={(e) => setAge(e.target.value)}
+          />
+</Form.Group>
+          
+         
           <Form.Group className="mb-3" controlId="confirmPassword">
             <Form.Label>Confirm Password</Form.Label>
             <Form.Control

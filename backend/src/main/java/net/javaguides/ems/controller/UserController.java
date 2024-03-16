@@ -51,6 +51,8 @@ public class UserController {
         if (repoUser != null) {
             repoUser.setName(user.getName());
             repoUser.setEmail(user.getEmail());
+            repoUser.setAddress(user.getAddress());
+            repoUser.setAge(user.getAge());
             if (user.getPassword() != "") {
                 repoUser.setPassword(passwordEncoder.encode(user.getPassword()));
             }
