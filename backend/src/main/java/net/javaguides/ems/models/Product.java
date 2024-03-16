@@ -34,7 +34,29 @@ public class Product {
         this.category = category;
     }
 
+    public int getId() {
+        return this.id;
+    }
 
+
+    public String getName() {
+        return this.name;
+    }
+
+
+    public String getDescription() {
+        return this.description;
+    }
+
+
+    public int getPrice() {
+        return this.price;
+    }
+
+
+    public String getImagepathe() {
+        return this.imagepathe;
+    }
     public void setName(String name) {
         this.name = name;
     }
@@ -77,4 +99,18 @@ public class Product {
         map.put("category", this.category.toHashMap());
         return map;
     }
+
+    @Override
+    public String toString() {
+        return "{" +
+            " id='" + getId() + "'" +
+            ", name='" + getName() + "'" +
+            ", description='" + getDescription() + "'" +
+            ", price='" + getPrice() + "'" +
+            ", imagepathe='" + getImagepathe() + "'" +
+            ", category='" + getCategory() + "'" +
+            "}";
+    }
+    
+
 }
