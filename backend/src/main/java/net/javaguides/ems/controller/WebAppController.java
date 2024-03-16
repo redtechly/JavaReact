@@ -13,13 +13,18 @@ public class WebAppController {
         return "forward:/";
     }
 
-    @GetMapping("/edit-food/:id")
+    @GetMapping("/edit-product/:id")
     public String redirect2(@RequestParam String param) {
         return "forward:/";
     }
 
     @GetMapping("/edit-category/:id")
     public String redirect3(@RequestParam String param) {
+        return "forward:/";
+    }
+
+    @GetMapping("/edit-user/:id")
+    public String redirect4(@RequestParam String param) {
         return "forward:/";
     }
 
