@@ -55,6 +55,11 @@ export default function SignupScreen() {
 
   const submitHandler = async (e) => {
     e.preventDefault();
+     // Validate age
+     if (parseInt(age) < 16) {
+      toast.error("Age must be at least 16");
+      return;
+    }
     
     if (validateForm()) {
       try {
