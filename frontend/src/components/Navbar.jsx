@@ -14,6 +14,8 @@ const NavigationBar = () => {
     localStorage.removeItem("shippingAddress");
     localStorage.removeItem("paymentMethod");
   };
+  const userid=userInfo.user.id;
+ 
   const {
     data: categories,
     isLoading,
@@ -77,7 +79,7 @@ const NavigationBar = () => {
                     </>
                   ) : (
                     <>
-                      <LinkContainer to="/updateuserform">
+                      <LinkContainer to={`/edit-user/${userid}`}>
                         <NavDropdown.Item>User Profile</NavDropdown.Item>
                       </LinkContainer>
                       <LinkContainer to="/cartpage">
