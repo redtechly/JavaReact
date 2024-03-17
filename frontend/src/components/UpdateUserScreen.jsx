@@ -1,4 +1,4 @@
-import React, { useContext, useReducer, useState } from "react";
+import React, { useContext, useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { Store } from "../Store";
@@ -28,10 +28,18 @@ export default function UpdateUserScreen() {
       },
     }
   );
-  const submitHandler = async (e) => {
-    e.preventDefault();
+
+  const validateForm = () => {
     if (password !== confirmPassword) {
       toast.error("Password and confirm password do not match");
+      return false;
+    }
+    return true;
+  };
+
+  const submitHandler = async (e) => {
+    e.preventDefault();
+    if (!validateForm()) {
       return;
     }
     try {
@@ -53,7 +61,7 @@ export default function UpdateUserScreen() {
   };
 
   return isLoading ? (
-    LoadingBox
+    <LoadingBox />
   ) : (
     <div className="container small-container">
       <h1 className="my-3">User Profile</h1>

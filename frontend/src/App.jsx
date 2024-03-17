@@ -34,6 +34,8 @@ import DeleteUsers from "./components/DeleteUsers";
 import DisplayUsers from "./components/DisplayUsers";
 import Dashboardpage from "./pages/Dashboard";
 
+import UpdateUserScreen from "./components/UpdateUserScreen";
+
 
 import CartPage from "./pages/CartPage";
 
@@ -72,6 +74,7 @@ function App() {
 
             <Route path="/about-us" element={<AboutUsScreen/>} />
             <Route path="/Display-users" element={<DisplayUsers/>} />
+            <Route path="/updateuser" element={<UpdateUserScreen/>} />
             
               <Route
                 path="/list-product"

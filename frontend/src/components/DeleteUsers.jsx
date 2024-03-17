@@ -9,6 +9,7 @@ const DeleteUsers = () => {
     'user3@example.com'
   ]);
   const [selectedUser, setSelectedUser] = useState('');
+  const [error, setError] = useState('');
 
   // Handler for selecting a user from the dropdown
   const handleSelectUser = (event) => {
@@ -17,27 +18,34 @@ const DeleteUsers = () => {
 
   // Handler for deleting the selected user
   const handleDeleteUser = () => {
+    if (!selectedUser) {
+      setError('Please select a user to delete');
+      return;
+    }
+
     setUsers(users.filter(user => user !== selectedUser));
     setSelectedUser('');
+    setError('');
   };
 
   return (
     <div>
-    <UserManagement/>
-    <div className="deleteUsersContainer">
-      <h2>Delete Users</h2>
-      <div>
-        <select value={selectedUser} onChange={handleSelectUser}>
-          <option value="">Select user to delete</option>
-          {users.map(user => (
-            <option key={user} value={user}>{user}</option>
-          ))}
-        </select>
-        <Button variant="danger" onClick={handleDeleteUser} disabled={!selectedUser}>
-          Delete
-        </Button>
+      <UserManagement />
+      <div className="deleteUsersContainer">
+        <h2>Delete Users</h2>
+        <div>
+          <select value={selectedUser} onChange={handleSelectUser}>
+            <option value="">Select user to delete</option>
+            {users.map(user => (
+              <option key={user} value={user}>{user}</option>
+            ))}
+          </select>
+          <Button variant="danger" onClick={handleDeleteUser} disabled={!selectedUser}>
+            Delete
+          </Button>
+          {error && <div className="error">{error}</div>}
+        </div>
       </div>
-    </div>
     </div>
   );
 };
