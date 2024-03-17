@@ -37,11 +37,6 @@ const Dashboard = () => {
                 Permissions
               </Button>
             </Link>
-            <Link to="/updateuser">
-              <Button variant="primary" className="mb-2 w-100">
-                Update user
-              </Button>
-            </Link>
             <Link to="/User-management">
               <Button variant="primary" className="w-100">
                 Users Management
