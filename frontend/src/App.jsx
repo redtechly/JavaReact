@@ -35,7 +35,6 @@ import DisplayUsers from "./components/DisplayUsers";
 import Dashboardpage from "./pages/Dashboard";
 
 
-
 import CartPage from "./pages/CartPage";
 
 
@@ -83,7 +82,7 @@ function App() {
           
               <Route
                 path="/User-management"
-                element={<UserManagement/>}
+                element={<ListUserComponent/>}
               ></Route>
 
               <Route path="/edit-product/:id" element={<ProductEdit />}></Route>
