@@ -8,6 +8,7 @@ import { REST_API_BASE_URL } from "../App";
 import { getUser } from "../services/UserService";
 import LoadingBox from "./LoadingBox";
 import { useQuery } from "react-query";
+import { Link } from "react-router-dom";
 
 export default function ProfileScreen() {
   const { state, dispatch: ctxDispatch } = useContext(Store);
@@ -59,7 +60,10 @@ export default function ProfileScreen() {
   return isLoading ? (
     LoadingBox
   ) : (
+    
+    
     <div className="container small-container">
+    <Link to="/Dashboard" className="btn btn-primary">dashboard</Link>
       <h1 className="my-3">User Profile</h1>
       <form onSubmit={submitHandler}>
         <Form.Group className="mb-3" controlId="name">
@@ -98,5 +102,6 @@ export default function ProfileScreen() {
         </div>
       </form>
     </div>
+   
   );
 }

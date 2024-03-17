@@ -34,7 +34,6 @@ import DeleteUsers from "./components/DeleteUsers";
 import DisplayUsers from "./components/DisplayUsers";
 import Dashboardpage from "./pages/Dashboard";
 
-import UpdateUserScreen from "./components/UpdateUserScreen";
 
 
 import CartPage from "./pages/CartPage";
@@ -58,7 +57,7 @@ function App() {
               <Route path="/login" element={<LoginScreen />} />
               <Route path="/test" element={<TestPage />} />
               <Route path="/signup" element={<SignupScreen />} />
-              <Route path="/updateuser" element={<ProfileScreen />} />
+              <Route path="/updateprofile" element={<ProfileScreen />} />
               <Route path="/create-role" element={<CreateRole />} />
             <Route path="/assign-role" element={<AssignRoleToUser />} />
             <Route path="/edit-role" element={<EditRole />} />
@@ -66,7 +65,8 @@ function App() {
             <Route path="/Permissionpage" element={<Permissionpage />} />
             <Route path="/chatpage" element={<ChatPage />} />
             <Route path="/Dashboard" element={<Dashboardpage />} />
-
+            
+            
             <Route path="/contact" element={<ContactUs />} />
             <Route path="/deleteusers" element={<DeleteUsers/>} />
 

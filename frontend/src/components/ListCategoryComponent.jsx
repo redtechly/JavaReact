@@ -22,7 +22,13 @@ const ListCategoryComponent = () => {
       >
         Add Category
       </button>
-
+      <button
+        className="btn btn-primary m-2 "
+        onClick={() => navigator("/Dashboard")}
+        style={{ float: "left" }}
+      >
+        dashboard
+      </button>
       <table className="table table-striped table-bordered">
         <thead>
           <tr>

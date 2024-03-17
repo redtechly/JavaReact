@@ -13,6 +13,7 @@ const CreateRole = () => {
   return (
     <div>
       <div className="cardBox">
+      <Link to="/Dashboard" className="btn btn-primary">dashboard</Link>
         <div className="card">
           <div className="space">
             <Link to="/create-role" className="link">Create OR Assign</Link>

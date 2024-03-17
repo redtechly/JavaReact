@@ -6,6 +6,7 @@ import '../App.css'
 const UserManagement = () => {
   return (
     <div className="userManagementContainer">
+    <Link to="/Dashboard" className="btn btn-primary">dashboard</Link>
       <h2>User Management</h2>
       <div className="userOptions">
         <Link to="/Display-users" >

@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useQuery } from "react-query";
 import { deleteProduct, listProducts } from "../services/ProductService";
+import Dashboard from "../pages/Dashboard";
 
 const ListProductComponent = () => {
   const navigator = useNavigate();
@@ -13,16 +14,25 @@ const ListProductComponent = () => {
 
   if (isLoading) return <h1>Loading</h1>;
   return (
-    <div className="container">
+    <div >
+    
+    <div className="container ">
       <h2 className="text-center">List of Product</h2>
       <button
-        className="btn btn-primary m-2"
+        className="btn btn-primary m-2 "
         onClick={() => navigator("/add-product")}
         style={{ float: "right" }}
       >
         Add Product
       </button>
-      <table className="table table-striped table-bordered">
+      <button
+        className="btn btn-primary m-2 "
+        onClick={() => navigator("/Dashboard")}
+        style={{ float: "left" }}
+      >
+        dashboard
+      </button>
+      <table className="table table-striped table-bordered ">
         <thead>
           <tr>
             <th>Id</th>
@@ -69,6 +79,7 @@ const ListProductComponent = () => {
           ))}
         </tbody>
       </table>
+    </div>
     </div>
   );
 };
