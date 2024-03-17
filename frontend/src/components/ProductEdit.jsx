@@ -128,7 +128,7 @@ const ProductEdit = () => {
               <div className="form-group mb-2">
                 <label className="form-label">Image:</label>
                 <input
-                  type="text"
+                  type="hidden"
                   name="imagepathe"
                   value={imagepathe}
                   className="form-control"

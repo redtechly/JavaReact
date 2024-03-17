@@ -130,7 +130,7 @@ const ProductComponent = () => {
               <div className="form-group mb-2">
                 <label className="form-label">Image:</label>
                 <input
-                  type="text"
+                  type="hidden"
                   name="imagepath"
                   value={imagepath}
                   className="form-control"
