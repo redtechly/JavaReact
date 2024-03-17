@@ -82,6 +82,9 @@ const NavigationBar = () => {
                       <LinkContainer to={`/edit-user/${userid}`}>
                         <NavDropdown.Item>User Profile</NavDropdown.Item>
                       </LinkContainer>
+                      <LinkContainer to={`/Dashboard`}>
+                        <NavDropdown.Item>Dashboard</NavDropdown.Item>
+                      </LinkContainer>
                       <LinkContainer to="/cartpage">
                         <NavDropdown.Item>Cart</NavDropdown.Item>
                       </LinkContainer>
