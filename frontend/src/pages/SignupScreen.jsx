@@ -49,8 +49,16 @@ export default function SignupScreen() {
       isValid = false;
     }
 
+
+    if (parseInt(age) < 16) {
+      errors.age = "Age must be at least 16";
+      isValid = false;
+    }
+
     setErrors(errors);
     return isValid;
+
+
   };
 
   const submitHandler = async (e) => {

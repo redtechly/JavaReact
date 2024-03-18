@@ -1,5 +1,5 @@
 import { useQuery } from "react-query";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { deleteUser, listUsers } from "../services/UserService";
 import LoadingBox from "./LoadingBox";
 
@@ -16,7 +16,7 @@ const ListUserComponent = () => {
   return (
     <div className="container">
       <h2 className="text-center">List of Users</h2>
-
+      <Link to="/Dashboard" className="btn btn-primary">dashboard</Link>
       <table className="table table-striped table-bordered">
         <thead>
           <tr>

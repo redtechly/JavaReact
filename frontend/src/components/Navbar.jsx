@@ -14,6 +14,7 @@ const NavigationBar = () => {
     localStorage.removeItem("shippingAddress");
     localStorage.removeItem("paymentMethod");
   };
+ 
   const {
     data: categories,
     isLoading,
@@ -77,8 +78,11 @@ const NavigationBar = () => {
                     </>
                   ) : (
                     <>
-                      <LinkContainer to="/updateuserform">
+                      <LinkContainer to={`/edit-user/${userInfo.user.id}`}>
                         <NavDropdown.Item>User Profile</NavDropdown.Item>
+                      </LinkContainer>
+                      <LinkContainer to={`/Dashboard`}>
+                        <NavDropdown.Item>Dashboard</NavDropdown.Item>
                       </LinkContainer>
                       <LinkContainer to="/cartpage">
                         <NavDropdown.Item>Cart</NavDropdown.Item>

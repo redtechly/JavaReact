@@ -8,8 +8,9 @@ const ProductComponent = () => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState(0);
-  const [imagepath, setImagepathe] = useState("");
-  const [category, setCategory] = useState(null);
+  const [imagepath, setImagepath] = useState("");
+  const [category, setCategory] = useState("");
+  const [errors, setErrors] = useState({});
   const navigator = useNavigate();
   const {
     data: categories,
@@ -17,16 +18,47 @@ const ProductComponent = () => {
     isError,
     error,
   } = useQuery("List Categoty", () => listCategories());
+
+  const validate = () => {
+    const errors = {};
+    if (!name.trim()) {
+      errors.name = "Name is required";
+    }
+    if (!description.trim()) {
+      errors.description = "Description is required";
+    }
+    if (price <= 0) {
+      errors.price = "Price must be greater than 0";
+    }
+    if (!imagepath.trim()) {
+      errors.imagepath = "Image path is required";
+    }
+    if (!category) {
+      errors.category = "Category is required";
+    }
+    setErrors(errors);
+    return Object.keys(errors).length === 0;
+  };
+
   const saveProduct = async (e) => {
     e.preventDefault();
-    await createProduct({ name, description, price, imagepath, categoryName: category });
-    navigator("/list-product");
+    const isValid = validate();
+    if (isValid) {
+      await createProduct({
+        name,
+        description,
+        price,
+        imagepath,
+        categoryName: category,
+      });
+      navigator("/list-product");
+    }
   };
+
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      // Set the image path to the file name
-      setImagepathe(file.name);
+      setImagepath(file.name);
     }
   };
 
@@ -45,7 +77,7 @@ const ProductComponent = () => {
         <div className="card col-md-6 offset-md-3 offset-md-3">
           <h2 className="text-center">Add Product</h2>
           <div className="card-body">
-            <form>
+            <form onSubmit={saveProduct}>
               <div className="form-group mb-2">
                 <label className="form-label">Name:</label>
                 <input
@@ -56,6 +88,9 @@ const ProductComponent = () => {
                   className="form-control"
                   onChange={(e) => setName(e.target.value)}
                 ></input>
+                {errors.name && (
+                  <div className="text-danger">{errors.name}</div>
+                )}
               </div>
               <div className="form-group mb-2">
                 <label className="form-label">Description:</label>
@@ -67,6 +102,9 @@ const ProductComponent = () => {
                   className="form-control"
                   onChange={(e) => setDescription(e.target.value)}
                 ></input>
+                {errors.description && (
+                  <div className="text-danger">{errors.description}</div>
+                )}
               </div>
 
               <div className="form-group mb-2">
@@ -85,60 +123,47 @@ const ProductComponent = () => {
                     }
                   }}
                 ></input>
+                {errors.price && (
+                  <div className="text-danger">{errors.price}</div>
+                )}
               </div>
               <div className="form-group mb-2">
                 <label className="form-label">Image:</label>
                 <input
-                  type="text"
-                  name="imagepathe"
+                  type="hidden"
+                  name="imagepath"
                   value={imagepath}
                   className="form-control"
                 ></input>
                 <input
                   type="file"
                   accept="image/*"
-                  name="imagepathe"
                   className="form-control"
                   onChange={handleImageChange}
                 />
+                {errors.imagepath && (
+                  <div className="text-danger">{errors.imagepath}</div>
+                )}
               </div>
 
-              {/* <div className="form-group mb-2">
-                <label className="form-label">Category:</label>
-                <select
-                  defaultValue=""
-                  className="form-control"
-                  // onChange={(e) => setCategory(Number(e.target.value))}
-                  onChange={(e) => setCategory(categories.find(cat => cat.id === Number(e.target.value)))}
-                >
-                  <option value="" disabled>
-                    Choose Category
-                  </option>
-                  {categories.map((category) => (
-                    <option key={category.id} value={category.id}>
-                      {category.name}
-                    </option>
-                  ))}
-                </select>
-              </div> */}
               <div className="form-group mb-2">
                 <label className="form-label">Category:</label>
                 <select
-                  defaultValue=""
                   className="form-control"
                   onChange={(e) => setCategory(e.target.value)}
                 >
-                  <option value="" disabled>
-                    Choose Category
-                  </option>
+                  <option value="">Choose Category</option>
                   {categories.map((category) => (
                     <option key={category.id} value={category.name}>
                       {category.name}
                     </option>
                   ))}
                 </select>
+                {errors.category && (
+                  <div className="text-danger">{errors.category}</div>
+                )}
               </div>
-              <button className="btn btn-success" onClick={saveProduct}>
+              <button type="submit" className="btn btn-success">
                 Submit
               </button>
             </form>

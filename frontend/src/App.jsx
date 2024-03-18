@@ -56,7 +56,7 @@ function App() {
               <Route path="/login" element={<LoginScreen />} />
               <Route path="/test" element={<TestPage />} />
               <Route path="/signup" element={<SignupScreen />} />
-              <Route path="/updateuser" element={<ProfileScreen />} />
+              <Route path="/updateprofile" element={<ProfileScreen />} />
               <Route path="/create-role" element={<CreateRole />} />
             <Route path="/assign-role" element={<AssignRoleToUser />} />
             <Route path="/edit-role" element={<EditRole />} />
@@ -64,7 +64,8 @@ function App() {
             <Route path="/Permissionpage" element={<Permissionpage />} />
             <Route path="/chatpage" element={<ChatPage />} />
             <Route path="/Dashboard" element={<Dashboardpage />} />
-
+            
+            
             <Route path="/contact" element={<ContactUs />} />
             <Route path="/deleteusers" element={<DeleteUsers/>} />
 
@@ -72,6 +73,7 @@ function App() {
 
             <Route path="/about-us" element={<AboutUsScreen/>} />
             <Route path="/Display-users" element={<DisplayUsers/>} />
+            <Route path="/updateuser" element={<UpdateUserScreen/>} />
             
               <Route
                 path="/list-product"
@@ -80,7 +82,7 @@ function App() {
           
               <Route
                 path="/User-management"
-                element={<UserManagement/>}
+                element={<ListUserComponent/>}
               ></Route>
 
               <Route path="/edit-product/:id" element={<ProductEdit />}></Route>

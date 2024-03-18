@@ -10,9 +10,10 @@ const ProductEdit = () => {
   const [price, setPrice] = useState(0);
   const [imagepathe, setImagepathe] = useState("");
   const [category, setCategory] = useState(0);
+  const [errors, setErrors] = useState({}); // State to hold validation errors
   const navigator = useNavigate();
   const { id } = useParams();
-  const { data: categories } = useQuery("List Categoty", () =>
+  const { data: categories } = useQuery("List Category", () =>
     listCategories()
   );
   const { isLoading } = useQuery(
@@ -23,25 +24,57 @@ const ProductEdit = () => {
         setName(data.name);
         setDescription(data.description);
         setPrice(Number(data.price));
-        setImagepathe(data.imagepathe)
+        setImagepathe(data.imagepathe);
         setCategory(Number(data.category.id));
       },
     }
   );
+
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      // Set the image path to the file name
       setImagepathe(file.name);
     }
   };
-  // const saveProduct = async (e) => {
-  //   e.preventDefault();
-  //   await createProduct({ name, price, category });
-  //   navigator("/list-product");
-  // };
+
+  const validateInputs = () => {
+    const errors = {};
+
+    if (!name.trim()) {
+      errors.name = "Name is required";
+    }
+
+    if (!description.trim()) {
+      errors.description = "Description is required";
+    }
+
+    if (price <= 0) {
+      errors.price = "Price must be greater than zero";
+    }
+
+    if (category === 0) {
+      errors.category = "Category is required";
+    }
+
+    if (!imagepathe) {
+      errors.imagepathe = "Image is required";
+    }
+
+    setErrors(errors);
+    return Object.keys(errors).length === 0; // Return true if there are no errors
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (validateInputs()) {
+      await updateProduct(id, { name, description, price, imagepathe, category });
+      navigator("/list-product");
+    }
+  };
 
   if (isLoading) return <h1>Loading</h1>;
+
   return (
     <div className="container">
       <br /> <br />
@@ -55,7 +88,7 @@ const ProductEdit = () => {
         <div className="card col-md-6 offset-md-3 offset-md-3">
           <h2 className="text-center">Update Product</h2>
           <div className="card-body">
-            <form>
+            <form onSubmit={handleSubmit}>
               <div className="form-group mb-2">
                 <label className="form-label">Name:</label>
                 <input
@@ -65,7 +98,8 @@ const ProductEdit = () => {
                   value={name}
                   className="form-control"
                   onChange={(e) => setName(e.target.value)}
-                ></input>
+                />
+                {errors.name && <div className="text-danger">{errors.name}</div>}
               </div>
               <div className="form-group mb-2">
                 <label className="form-label">Description:</label>
@@ -76,9 +110,9 @@ const ProductEdit = () => {
                   value={description}
                   className="form-control"
                   onChange={(e) => setDescription(e.target.value)}
-                ></input>
+                />
+                {errors.description && <div className="text-danger">{errors.description}</div>}
               </div>
-
               <div className="form-group mb-2">
                 <label className="form-label">Price:</label>
                 <input
@@ -87,23 +121,19 @@ const ProductEdit = () => {
                   name="price"
                   value={price}
                   className="form-control"
-                  onChange={(e) => {
-                    if (e.target.value < 0) {
-                      setPrice(0);
-                    } else {
-                      setPrice(Number(e.target.value));
-                    }
-                  }}
-                ></input>
+                  onChange={(e) => setPrice(Number(e.target.value))}
+                />
+                {errors.price && <div className="text-danger">{errors.price}</div>}
               </div>
               <div className="form-group mb-2">
                 <label className="form-label">Image:</label>
                 <input
-                  type="text"
+                  type="hidden"
                   name="imagepathe"
                   value={imagepathe}
                   className="form-control"
-                ></input>
+                  onChange={(e) => setImagepath(e.target.value)}
+                />
                 <input
                   type="file"
                   accept="image/*"
@@ -111,22 +141,16 @@ const ProductEdit = () => {
                   className="form-control"
                   onChange={handleImageChange}
                 />
-                {imagepathe && (
-                  <img
-                    src={imagepathe}
-                    alt="Product Preview"
-                    style={{ marginTop: '10px', maxWidth: '100%' }}
-                  />
-                )}
+                {errors.imagepathe && <div className="text-danger">{errors.imagepathe}</div>}
               </div>
               <div className="form-group mb-2">
                 <label className="form-label">Category:</label>
                 <select
-                  defaultValue={category}
+                  value={category}
                   className="form-control"
                   onChange={(e) => setCategory(Number(e.target.value))}
                 >
-                  <option value="" disabled>
+                  <option value={0} disabled>
                     Choose Category
                   </option>
                   {categories.map((category) => (
@@ -135,15 +159,9 @@ const ProductEdit = () => {
                     </option>
                   ))}
                 </select>
+                {errors.category && <div className="text-danger">{errors.category}</div>}
               </div>
-              <button
-                className="btn btn-success"
-                onClick={async (e) => {
-                  e.preventDefault();
-                  await updateProduct(id, { name, description, price, imagepathe, category });
-                  navigator("/list-product");
-                }}
-              >
+              <button className="btn btn-success" type="submit">
                 Update
               </button>
             </form>
