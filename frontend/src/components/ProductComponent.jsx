@@ -152,7 +152,9 @@ const ProductComponent = () => {
                   className="form-control"
                   onChange={(e) => setCategory(e.target.value)}
                 >
-                  <option value="">Choose Category</option>
+                  <option value="" disabled selected>
+                    Choose Category
+                  </option>
                   {categories.map((category) => (
                     <option key={category.id} value={category.name}>
                       {category.name}
