@@ -34,9 +34,8 @@ import DeleteUsers from "./components/DeleteUsers";
 import DisplayUsers from "./components/DisplayUsers";
 import Dashboardpage from "./pages/Dashboard";
 
-
 import CartPage from "./pages/CartPage";
-
+import ProductsComponent from "./components/ProductsComponent";
 
 // import Contact from "./pages/Contact";
 // import AboutUs from "./pages/AboutUs";
@@ -54,35 +53,35 @@ function App() {
             <Routes>
               <Route path="/" element={<HomeScreen />} />
               <Route path="/login" element={<LoginScreen />} />
+              <Route path="/product" element={<ProductsComponent />} />
               <Route path="/test" element={<TestPage />} />
               <Route path="/signup" element={<SignupScreen />} />
               <Route path="/updateprofile" element={<ProfileScreen />} />
               <Route path="/create-role" element={<CreateRole />} />
-            <Route path="/assign-role" element={<AssignRoleToUser />} />
-            <Route path="/edit-role" element={<EditRole />} />
-            <Route path="/delete-role" element={<DeleteRole />} />
-            <Route path="/Permissionpage" element={<Permissionpage />} />
-            <Route path="/chatpage" element={<ChatPage />} />
-            <Route path="/Dashboard" element={<Dashboardpage />} />
-            
-            
-            <Route path="/contact" element={<ContactUs />} />
-            <Route path="/deleteusers" element={<DeleteUsers/>} />
+              <Route path="/assign-role" element={<AssignRoleToUser />} />
+              <Route path="/edit-role" element={<EditRole />} />
+              <Route path="/delete-role" element={<DeleteRole />} />
+              <Route path="/Permissionpage" element={<Permissionpage />} />
+              <Route path="/chatpage" element={<ChatPage />} />
+              <Route path="/Dashboard" element={<Dashboardpage />} />
 
-            <Route path="/cartpage" element={<CartPage />} />
+              <Route path="/contact" element={<ContactUs />} />
+              <Route path="/deleteusers" element={<DeleteUsers />} />
 
-            <Route path="/about-us" element={<AboutUsScreen/>} />
-            <Route path="/Display-users" element={<DisplayUsers/>} />
-            <Route path="/updateuser" element={<UpdateUserScreen/>} />
-            
+              <Route path="/cartpage" element={<CartPage />} />
+
+              <Route path="/about-us" element={<AboutUsScreen />} />
+              <Route path="/Display-users" element={<DisplayUsers />} />
+              <Route path="/updateuser" element={<UpdateUserScreen />} />
+
               <Route
                 path="/list-product"
                 element={<ListProductComponent />}
               ></Route>
-          
+
               <Route
                 path="/User-management"
-                element={<ListUserComponent/>}
+                element={<ListUserComponent />}
               ></Route>
 
               <Route path="/edit-product/:id" element={<ProductEdit />}></Route>

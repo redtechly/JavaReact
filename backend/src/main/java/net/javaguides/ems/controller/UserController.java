@@ -90,4 +90,10 @@ public class UserController {
         }
         return null;
     }
+
+    @GetMapping("/jwt/{token}")
+    public HashMap<String, Object> getMethodName(@PathVariable String token) {
+        return authService.getUserFromToken(token).toHashMap();
+    }
+
 }

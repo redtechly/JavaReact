@@ -62,6 +62,13 @@ public class AuthenticationService {
         return new AuthenticationResponse(jwt, user);
     }
 
+    public User getUserFromToken(String token) {
+        String userEmail = jwtService.extractUsername(token);
+        System.out.println("userEmail: " + userEmail);
+        return userRepository.findByEmail(userEmail)
+                .orElseThrow(() -> new IllegalArgumentException("User not found with email: " + userEmail));
+    }
+
     // private void revokeAllTokenByUser(User user) {
     // List<Token> validTokens = tokenRepository.findAllTokensByUser(user.getId());
     // if (validTokens.isEmpty()) {

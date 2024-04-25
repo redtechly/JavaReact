@@ -35,19 +35,11 @@ public class SecurityConfig {
                                 .userDetailsService(userDetailsServiceImp)
                                 .sessionManagement(session -> session
                                                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
-                                // .exceptionHandling(
-                                // e -> e.accessDeniedHandler(
-                                // (request, response, accessDeniedException) -> response
-                                // .setStatus(403))
-                                // .authenticationEntryPoint(new HttpStatusEntryPoint(
-                                // HttpStatus.UNAUTHORIZED)))
-                                // .logout(l -> l
-                                // .logoutUrl("/logout")
-                                // .addLogoutHandler(logoutHandler)
-                                // .logoutSuccessHandler((request, response,
-                                // authentication) -> SecurityContextHolder
-                                // .clearContext()))
+                                // .addFilterBefore(jwtAuthenticationFilter,
+                                // UsernamePasswordAuthenticationFilter.class)
+                                // .authorizeHttpRequests(auth -> auth
+                                // .requestMatchers("/api/user/login", "/auth/**", "/").permitAll()
+                                // .anyRequest().authenticated())
                                 .build();
 
         }
