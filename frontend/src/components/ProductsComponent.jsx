@@ -8,7 +8,6 @@ const ProductsComponent = () => {
   const { data: allProduct, isLoading } = useQuery("List Product", () =>
     listProducts()
   );
-
   if (isLoading) return <h1>Loading</h1>;
   return (
     <div>
