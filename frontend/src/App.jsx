@@ -34,8 +34,8 @@ import DeleteUsers from "./components/DeleteUsers";
 import DisplayUsers from "./components/DisplayUsers";
 import Dashboardpage from "./pages/Dashboard";
 
-import CartPage from "./pages/CartPage";
 import ProductsComponent from "./components/ProductsComponent";
+import CartScreen from "./pages/CartScreen";
 
 // import Contact from "./pages/Contact";
 // import AboutUs from "./pages/AboutUs";
@@ -54,6 +54,7 @@ function App() {
               <Route path="/" element={<HomeScreen />} />
               <Route path="/login" element={<LoginScreen />} />
               <Route path="/product" element={<ProductsComponent />} />
+              <Route path="/cart" element={<CartScreen />} />
               <Route path="/test" element={<TestPage />} />
               <Route path="/signup" element={<SignupScreen />} />
               <Route path="/updateprofile" element={<ProfileScreen />} />
@@ -67,8 +68,6 @@ function App() {
 
               <Route path="/contact" element={<ContactUs />} />
               <Route path="/deleteusers" element={<DeleteUsers />} />
-
-              <Route path="/cartpage" element={<CartPage />} />
 
               <Route path="/about-us" element={<AboutUsScreen />} />
               <Route path="/Display-users" element={<DisplayUsers />} />

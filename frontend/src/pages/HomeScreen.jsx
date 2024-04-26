@@ -86,13 +86,11 @@ const MainPage = () => {
             </Col>
           ))}
         </Row>
-        
 
-       <div className="d-flex justify-content-center mt-5">
-          
-        <Link to="/list-product">
-          <Button variant="primary">All products</Button>
-        </Link>
+        <div className="d-flex justify-content-center mt-5">
+          <Link to="/product">
+            <Button variant="primary">All products</Button>
+          </Link>
           {/* <Link to="/add-product">
           <Button variant="primary">Add Product</Button>
         </Link>
@@ -109,10 +107,7 @@ const MainPage = () => {
         <Link to="/User-management">
         <Button variant="primary"> Users management</Button>
       </Link> */}
-          </div>
-
-        
-       
+        </div>
       </Container>
 
       {/* Discount Section */}
@@ -132,7 +127,6 @@ const MainPage = () => {
               </strong>
             </p>
             <Button variant="primary">Buy Now</Button>
-            
           </Col>
           <Col lg={7} md={5}>
             <Image src="images/medicines.jpg" alt="" fluid />

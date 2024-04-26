@@ -1,28 +1,27 @@
 import React, { useContext } from "react";
 import { listCategories } from "../services/CategoryService";
-import { Navbar, Nav, NavDropdown, Container } from "react-bootstrap";
+import { Navbar, Nav, NavDropdown, Container, Badge } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import "../../css/homepage.css";
-import { useQuery } from "react-query"; 
+import { useQuery } from "react-query";
 import { Store } from "../Store";
+import { Link } from "react-router-dom";
 const NavigationBar = () => {
   const { state, dispatch: ctxDispatch } = useContext(Store);
-  const { userInfo } = state;
+  const { cart, userInfo } = state;
   const signoutHandler = () => {
     ctxDispatch({ type: "USER_SIGNOUT" });
     localStorage.removeItem("userInfo");
     localStorage.removeItem("shippingAddress");
     localStorage.removeItem("paymentMethod");
   };
- 
+
   const {
     data: categories,
     isLoading,
     isError,
     error,
   } = useQuery("List Categoty", () => listCategories());
-  if (isLoading) return <h1>Loading</h1>;
-  if (isError) return <h1>Error {error}</h1>;
   return (
     <Navbar expand="lg" sticky="top">
       <Container>
@@ -36,24 +35,40 @@ const NavigationBar = () => {
         </Navbar.Toggle>
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
-          <NavDropdown title="Categories" id="basic-nav-dropdown">
-      {categories.map((category) => (
-        <LinkContainer key={category.id} to={`/category/${category.name}`}>
-          <NavDropdown.Item>{category.name}</NavDropdown.Item>
-        </LinkContainer>
-      ))}
-    </NavDropdown>
+            <LinkContainer to="/product">
+              <Nav.Link>Products</Nav.Link>
+            </LinkContainer>
+            <NavDropdown title="Categories" id="basic-nav-dropdown">
+              {!isLoading &&
+                categories.map((category) => (
+                  <LinkContainer
+                    key={category.id}
+                    to={`/category/${category.name}`}
+                  >
+                    <NavDropdown.Item>{category.name}</NavDropdown.Item>
+                  </LinkContainer>
+                ))}
+            </NavDropdown>
             <LinkContainer to="/contact">
               <Nav.Link>Contact</Nav.Link>
             </LinkContainer>
             <LinkContainer to="/about-us">
               <Nav.Link>About Us</Nav.Link>
             </LinkContainer>
+
+            <Link to="/cart" className="nav-link">
+              Cart
+              {cart.cartItems.length > 0 && (
+                <Badge pill bg="danger">
+                  {cart.cartItems.reduce((a, c) => a + c.quantity, 0)}
+                </Badge>
+              )}
+            </Link>
             {userInfo && (
               <>
                 {true && (
                   <LinkContainer to="/chatpage">
-                    <Nav.Link >Message</Nav.Link>
+                    <Nav.Link>Message</Nav.Link>
                   </LinkContainer>
                 )}
                 <NavDropdown title={userInfo.user.name} id="user-nav-dropdown">
@@ -83,9 +98,6 @@ const NavigationBar = () => {
                       </LinkContainer>
                       <LinkContainer to={`/Dashboard`}>
                         <NavDropdown.Item>Dashboard</NavDropdown.Item>
-                      </LinkContainer>
-                      <LinkContainer to="/cartpage">
-                        <NavDropdown.Item>Cart</NavDropdown.Item>
                       </LinkContainer>
                     </>
                   )}

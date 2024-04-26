@@ -1,12 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { Store } from "../Store";
 
 function ProductCard(props) {
   const { product } = props;
-  const addToCartHandler = (product) => {
-    console.log("Add to cart: ", product);
-    // props.history.push(`/cart/${product.id}?qty=${1}`);
+  const { state, dispatch: ctxDispatch } = useContext(Store);
+  const { cart } = state;
+  const addToCartHandler = async (item) => {
+    const existItem = cart.cartItems.find((x) => x._id === product._id);
+    const quantity = existItem ? existItem.quantity + 1 : 1;
+    ctxDispatch({
+      type: "CART_ADD_ITEM",
+      payload: { ...item, quantity },
+    });
   };
 
   return (
