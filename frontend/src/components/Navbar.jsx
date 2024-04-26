@@ -49,9 +49,6 @@ const NavigationBar = () => {
                   </LinkContainer>
                 ))}
             </NavDropdown>
-            <LinkContainer to="/contact">
-              <Nav.Link>Contact</Nav.Link>
-            </LinkContainer>
             <LinkContainer to="/about-us">
               <Nav.Link>About Us</Nav.Link>
             </LinkContainer>
@@ -66,11 +63,6 @@ const NavigationBar = () => {
             </Link>
             {userInfo && (
               <>
-                {true && (
-                  <LinkContainer to="/chatpage">
-                    <Nav.Link>Message</Nav.Link>
-                  </LinkContainer>
-                )}
                 <NavDropdown title={userInfo.user.name} id="user-nav-dropdown">
                   {/* Conditional rendering based on user role */}
                   {userInfo.user.role === "ADMIN" ? (
@@ -93,6 +85,9 @@ const NavigationBar = () => {
                     </>
                   ) : (
                     <>
+                      <LinkContainer to="/chatpage">
+                        <NavDropdown.Item>Message</NavDropdown.Item>
+                      </LinkContainer>
                       <LinkContainer to={`/edit-user/${userInfo.user.id}`}>
                         <NavDropdown.Item>User Profile</NavDropdown.Item>
                       </LinkContainer>

@@ -26,8 +26,6 @@ import ProfileScreen from "./components/ProfileScreen";
 import ListUserComponent from "./components/ListUserComponent";
 import ChatPage from "./pages/ChatPage";
 
-import ContactUs from "./pages/ContactUsPage";
-
 import AboutUsScreen from "./pages/AboutUsScreen";
 import UserManagement from "./components/UserMnagement";
 import DeleteUsers from "./components/DeleteUsers";
@@ -38,8 +36,6 @@ import ProductsComponent from "./components/ProductsComponent";
 import CartScreen from "./pages/CartScreen";
 import ProductsByCategpry from "./pages/ProductsByCategpry";
 
-// import Contact from "./pages/Contact";
-// import AboutUs from "./pages/AboutUs";
 export const REST_API_BASE_URL = "http://localhost:8081/api";
 
 const queryClient = new QueryClient();
@@ -66,24 +62,18 @@ function App() {
               <Route path="/Permissionpage" element={<Permissionpage />} />
               <Route path="/chatpage" element={<ChatPage />} />
               <Route path="/Dashboard" element={<Dashboardpage />} />
-
-              <Route path="/contact" element={<ContactUs />} />
               <Route path="/deleteusers" element={<DeleteUsers />} />
-
               <Route path="/about-us" element={<AboutUsScreen />} />
               <Route path="/Display-users" element={<DisplayUsers />} />
               <Route path="/updateuser" element={<UpdateUserScreen />} />
-
               <Route
                 path="/list-product"
                 element={<ListProductComponent />}
               ></Route>
-
               <Route
                 path="/User-management"
                 element={<ListUserComponent />}
               ></Route>
-
               <Route path="/edit-product/:id" element={<ProductEdit />}></Route>
               <Route path="/list-user" element={<ListUserComponent />}></Route>
               <Route
