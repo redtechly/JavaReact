@@ -36,6 +36,7 @@ import Dashboardpage from "./pages/Dashboard";
 
 import ProductsComponent from "./components/ProductsComponent";
 import CartScreen from "./pages/CartScreen";
+import ProductsByCategpry from "./pages/ProductsByCategpry";
 
 // import Contact from "./pages/Contact";
 // import AboutUs from "./pages/AboutUs";
@@ -88,6 +89,10 @@ function App() {
               <Route
                 path="/edit-user/:id"
                 element={<UpdateUserScreen />}
+              ></Route>
+              <Route
+                path="/category/:id"
+                element={<ProductsByCategpry />}
               ></Route>
               <Route
                 path="/add-category"

@@ -46,40 +46,47 @@ public class ProductController {
         return null;
     }
 
+    @GetMapping("/product/category/{id}")
+    public List<HashMap<String, Object>> getProductByCategory(@PathVariable int id) {
+        List<Product> products = this.productRepository.findByCategoryId(id);
+        ArrayList<HashMap<String, Object>> list = new ArrayList<HashMap<String, Object>>();
+        for (Product product : products) {
+            list.add(product.toHashMap());
+        }
+        return list;
+    }
 
     @PostMapping("/addproduct")
     public ResponseEntity<HashMap<String, Object>> addProduct(@RequestBody Map<String, Object> payload) {
-        
-      
+
         Product product = new Product();
-    product.setName((String) payload.get("name"));
-    product.setDescription((String) payload.get("description"));
-    product.setPrice((int) payload.get("price"));
-    product.setImagepathe((String) payload.get("imagepath"));
-    String categoryName = (String) payload.get("categoryName");
+        product.setName((String) payload.get("name"));
+        product.setDescription((String) payload.get("description"));
+        product.setPrice((int) payload.get("price"));
+        product.setImagepathe((String) payload.get("imagepath"));
+        String categoryName = (String) payload.get("categoryName");
 
-    List<Category> categories = categoryRepository.findAll();
-    
-    Category existingCategory = categories.stream()
-                                         .filter(c -> c.getName().equalsIgnoreCase(categoryName))
-                                         .findFirst()
-                                         .orElse(null);
-    
-    if (existingCategory == null) {
+        List<Category> categories = categoryRepository.findAll();
 
-        existingCategory = new Category();
-        existingCategory.setName(categoryName);
-        categoryRepository.save(existingCategory);
+        Category existingCategory = categories.stream()
+                .filter(c -> c.getName().equalsIgnoreCase(categoryName))
+                .findFirst()
+                .orElse(null);
+
+        if (existingCategory == null) {
+
+            existingCategory = new Category();
+            existingCategory.setName(categoryName);
+            categoryRepository.save(existingCategory);
+        }
+
+        product.setCategory(existingCategory);
+
+        productRepository.save(product);
+
+        HashMap<String, Object> response = product.toHashMap();
+        return ResponseEntity.status(HttpStatus.OK).body(response);
     }
-    
-    product.setCategory(existingCategory);
-
-    productRepository.save(product);
-
-    HashMap<String, Object> response = product.toHashMap();
-    return ResponseEntity.status(HttpStatus.OK).body(response);
-    }
-
 
     @DeleteMapping("/deleteproduct/{id}")
     public ResponseEntity<HashMap<String, Object>> deleteProduct(@PathVariable int id) {
@@ -92,28 +99,28 @@ public class ProductController {
         return null;
     }
 
-
     // @PostMapping("/product")
-    // public HashMap<String, Object> addProduct(@RequestBody Map<String, Object> payload) {
-    //     Product product = new Product();
-    //     product.setName((String) payload.get("name"));
-    //     product.setDescription((String) payload.get("description"));
-    //     product.setPrice((int) payload.get("price"));
-    //     product.setImagepathe((String) payload.get("imagepathe"));
-    //     int category = (int) payload.get("category");
-    //     product.setCategory(this.categoryRepository.getReferenceById(category));
-    //     this.productRepository.save(product);
-    //     return product.toHashMap();
+    // public HashMap<String, Object> addProduct(@RequestBody Map<String, Object>
+    // payload) {
+    // Product product = new Product();
+    // product.setName((String) payload.get("name"));
+    // product.setDescription((String) payload.get("description"));
+    // product.setPrice((int) payload.get("price"));
+    // product.setImagepathe((String) payload.get("imagepathe"));
+    // int category = (int) payload.get("category");
+    // product.setCategory(this.categoryRepository.getReferenceById(category));
+    // this.productRepository.save(product);
+    // return product.toHashMap();
     // }
 
     // @DeleteMapping("/product/{id}")
     // public HashMap<String, Object> deleteProduct(@PathVariable int id) {
-    //     Product product = this.productRepository.findById(id).orElse(null);
-    //     if (product != null) {
-    //         this.productRepository.delete(product);
-    //         return product.toHashMap();
-    //     }
-    //     return null;
+    // Product product = this.productRepository.findById(id).orElse(null);
+    // if (product != null) {
+    // this.productRepository.delete(product);
+    // return product.toHashMap();
+    // }
+    // return null;
     // }
 
     @PutMapping("/product/{id}")

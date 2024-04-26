@@ -43,7 +43,7 @@ const NavigationBar = () => {
                 categories.map((category) => (
                   <LinkContainer
                     key={category.id}
-                    to={`/category/${category.name}`}
+                    to={`/category/${category.id}`}
                   >
                     <NavDropdown.Item>{category.name}</NavDropdown.Item>
                   </LinkContainer>
