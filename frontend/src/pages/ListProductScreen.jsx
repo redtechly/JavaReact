@@ -1,9 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import { useQuery } from "react-query";
 import { deleteProduct, listProducts } from "../services/ProductService";
-import Dashboard from "../pages/Dashboard";
 
-const ListProductComponent = () => {
+const ListProductScreen = () => {
   const navigator = useNavigate();
 
   const {
@@ -85,4 +84,4 @@ const ListProductComponent = () => {
   );
 };
 
-export default ListProductComponent;
+export default ListProductScreen;

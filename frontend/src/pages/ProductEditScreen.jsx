@@ -4,7 +4,7 @@ import { useQuery } from "react-query";
 import { getProduct, updateProduct } from "../services/ProductService";
 import { listCategories } from "../services/CategoryService";
 
-const ProductEdit = () => {
+const ProductEditScreen = () => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState(0);
@@ -68,7 +68,13 @@ const ProductEdit = () => {
     e.preventDefault();
 
     if (validateInputs()) {
-      await updateProduct(id, { name, description, price, imagepathe, category });
+      await updateProduct(id, {
+        name,
+        description,
+        price,
+        imagepathe,
+        category,
+      });
       navigator("/list-product");
     }
   };
@@ -99,7 +105,9 @@ const ProductEdit = () => {
                   className="form-control"
                   onChange={(e) => setName(e.target.value)}
                 />
-                {errors.name && <div className="text-danger">{errors.name}</div>}
+                {errors.name && (
+                  <div className="text-danger">{errors.name}</div>
+                )}
               </div>
               <div className="form-group mb-2">
                 <label className="form-label">Description:</label>
@@ -111,7 +119,9 @@ const ProductEdit = () => {
                   className="form-control"
                   onChange={(e) => setDescription(e.target.value)}
                 />
-                {errors.description && <div className="text-danger">{errors.description}</div>}
+                {errors.description && (
+                  <div className="text-danger">{errors.description}</div>
+                )}
               </div>
               <div className="form-group mb-2">
                 <label className="form-label">Price:</label>
@@ -123,7 +133,9 @@ const ProductEdit = () => {
                   className="form-control"
                   onChange={(e) => setPrice(Number(e.target.value))}
                 />
-                {errors.price && <div className="text-danger">{errors.price}</div>}
+                {errors.price && (
+                  <div className="text-danger">{errors.price}</div>
+                )}
               </div>
               <div className="form-group mb-2">
                 <label className="form-label">Image:</label>
@@ -141,7 +153,9 @@ const ProductEdit = () => {
                   className="form-control"
                   onChange={handleImageChange}
                 />
-                {errors.imagepathe && <div className="text-danger">{errors.imagepathe}</div>}
+                {errors.imagepathe && (
+                  <div className="text-danger">{errors.imagepathe}</div>
+                )}
               </div>
               <div className="form-group mb-2">
                 <label className="form-label">Category:</label>
@@ -159,7 +173,9 @@ const ProductEdit = () => {
                     </option>
                   ))}
                 </select>
-                {errors.category && <div className="text-danger">{errors.category}</div>}
+                {errors.category && (
+                  <div className="text-danger">{errors.category}</div>
+                )}
               </div>
               <button className="btn btn-success" type="submit">
                 Update
@@ -172,4 +188,4 @@ const ProductEdit = () => {
   );
 };
 
-export default ProductEdit;
+export default ProductEditScreen;

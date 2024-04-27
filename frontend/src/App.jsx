@@ -1,38 +1,35 @@
 import "./App.css";
+import "react-toastify/dist/ReactToastify.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
-import ListProductComponent from "./components/ListProductComponent";
-import CreateProduct from "./pages/CreateProduct";
-import ListCategoryComponent from "./components/ListCategoryComponent";
-import CategoryComponent from "./components/CategoryComponent";
 import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import CategoryEdit from "./components/CategoryEdit";
-import UpdateUserScreen from "./components/UpdateUserScreen";
-import ProductEdit from "./components/ProductEdit";
-import Permissionpage from "./components/Permissionpage";
-import CreateRole from "./components/CreateRole";
-import AssignRoleToUser from "./components/AssignRoleToUser";
-import EditRole from "./components/EditRole";
-import DeleteRole from "./components/DeleteRole";
+import ListProductScreen from "./pages/ListProductScreen";
+import CreateProduct from "./pages/CreateProduct";
+import ListCategoryScreen from "./pages/ListCategoryScreen";
+import CategoryCreateScreen from "./pages/CategoryCreateScreen";
+import CategoryEditScreen from "./pages/CategoryEditScreen";
+import UpdateUserScreen from "./pages/UpdateUserScreen";
+import ProductEditScreen from "./pages/ProductEditScreen";
+import PermissionScreen from "./pages/PermissionScreen";
+import CreateRoleScreen from "./pages/CreateRoleScreen";
+import AssignRoleToUserScreen from "./pages/AssignRoleToUserScreen";
+import EditRoleScreen from "./pages/EditRoleScreen";
+import DeleteRoleScreen from "./pages/DeleteRoleScreen";
 import HomeScreen from "./pages/HomeScreen";
-import HeaderComponent from "./components/Navbar";
-import FooterComponent from "./components/Footer";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 import LoginScreen from "./pages/LoginScreen";
 import { StoreProvider } from "./Store";
 import SignupScreen from "./pages/SignupScreen";
 import TestPage from "./pages/TestPage";
-import ProfileScreen from "./components/ProfileScreen";
-import ListUserComponent from "./components/ListUserComponent";
+import ProfileScreen from "./pages/ProfileScreen";
+import ListUserScreen from "./pages/ListUserScreen";
 import ChatPage from "./pages/ChatPage";
-
 import AboutUsScreen from "./pages/AboutUsScreen";
-import UserManagement from "./components/UserMnagement";
-import DeleteUsers from "./components/DeleteUsers";
-import DisplayUsers from "./components/DisplayUsers";
+import DeleteUsersScreen from "./pages/DeleteUsersScreen";
+import DisplayUsersScreen from "./pages/DisplayUsersScreen";
 import Dashboardpage from "./pages/Dashboard";
-
-import ProductsComponent from "./components/ProductsComponent";
+import ProductsScreen from "./pages/ProductsScreen";
 import CartScreen from "./pages/CartScreen";
 import ProductsByCategpry from "./pages/ProductsByCategpry";
 
@@ -46,36 +43,39 @@ function App() {
       <BrowserRouter>
         <QueryClientProvider client={queryClient}>
           <StoreProvider>
-            <HeaderComponent />
+            <Navbar />
             <Routes>
               <Route path="/" element={<HomeScreen />} />
               <Route path="/login" element={<LoginScreen />} />
-              <Route path="/product" element={<ProductsComponent />} />
+              <Route path="/product" element={<ProductsScreen />} />
               <Route path="/cart" element={<CartScreen />} />
               <Route path="/test" element={<TestPage />} />
               <Route path="/signup" element={<SignupScreen />} />
               <Route path="/updateprofile" element={<ProfileScreen />} />
-              <Route path="/create-role" element={<CreateRole />} />
-              <Route path="/assign-role" element={<AssignRoleToUser />} />
-              <Route path="/edit-role" element={<EditRole />} />
-              <Route path="/delete-role" element={<DeleteRole />} />
-              <Route path="/Permissionpage" element={<Permissionpage />} />
+              <Route path="/create-role" element={<CreateRoleScreen />} />
+              <Route path="/assign-role" element={<AssignRoleToUserScreen />} />
+              <Route path="/edit-role" element={<EditRoleScreen />} />
+              <Route path="/delete-role" element={<DeleteRoleScreen />} />
+              <Route path="/Permissionpage" element={<PermissionScreen />} />
               <Route path="/chatpage" element={<ChatPage />} />
               <Route path="/Dashboard" element={<Dashboardpage />} />
-              <Route path="/deleteusers" element={<DeleteUsers />} />
+              <Route path="/deleteusers" element={<DeleteUsersScreen />} />
               <Route path="/about-us" element={<AboutUsScreen />} />
-              <Route path="/Display-users" element={<DisplayUsers />} />
+              <Route path="/Display-users" element={<DisplayUsersScreen />} />
               <Route path="/updateuser" element={<UpdateUserScreen />} />
               <Route
                 path="/list-product"
-                element={<ListProductComponent />}
+                element={<ListProductScreen />}
               ></Route>
               <Route
                 path="/User-management"
-                element={<ListUserComponent />}
+                element={<ListUserScreen />}
               ></Route>
-              <Route path="/edit-product/:id" element={<ProductEdit />}></Route>
-              <Route path="/list-user" element={<ListUserComponent />}></Route>
+              <Route
+                path="/edit-product/:id"
+                element={<ProductEditScreen />}
+              ></Route>
+              <Route path="/list-user" element={<ListUserScreen />}></Route>
               <Route
                 path="/edit-user/:id"
                 element={<UpdateUserScreen />}
@@ -86,20 +86,20 @@ function App() {
               ></Route>
               <Route
                 path="/add-category"
-                element={<CategoryComponent />}
+                element={<CategoryCreateScreen />}
               ></Route>
               <Route
                 path="/list-category"
-                element={<ListCategoryComponent />}
+                element={<ListCategoryScreen />}
               ></Route>
               <Route path="/add-product" element={<CreateProduct />}></Route>
               <Route
                 path="/edit-category/:id"
-                element={<CategoryEdit />}
+                element={<CategoryEditScreen />}
               ></Route>
             </Routes>
             <ToastContainer position="bottom-center" limit={1} />
-            <FooterComponent />
+            <Footer />
           </StoreProvider>
         </QueryClientProvider>
       </BrowserRouter>
