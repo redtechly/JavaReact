@@ -53,7 +53,7 @@ const ListProductComponent = () => {
                 <td>
                   {" "}
                   <img
-                    src={"../../images/" + product.imagepathe}
+                    src={"/images/" + product.imagepathe}
                     alt="Product Preview"
                     style={{ marginTop: "10px", maxWidth: "30%" }}
                   />

@@ -44,12 +44,13 @@ export default function CartScreen() {
               {cartItems.map((item) => (
                 <ListGroup.Item key={item.id}>
                   <Row className="align-items-center">
-                    <Col md={4}>
+                    <Col md={6}>
                       <img
-                        src={item.image}
+                        src={"/images/" + item.imagepathe}
                         alt={item.name}
+                        width={100}
                         className="img-fluid rounded img-thumbnail"
-                      ></img>{" "}
+                      ></img>
                       <Link to={`/product/${item.id}`}>{item.name}</Link>
                     </Col>
                     <Col md={3}>
@@ -73,8 +74,8 @@ export default function CartScreen() {
                         <i className="fas fa-plus-circle"></i>
                       </Button>
                     </Col>
-                    <Col md={3}>${item.price}</Col>
-                    <Col md={2}>
+                    <Col md={2}>${item.price}</Col>
+                    <Col md={1}>
                       <Button
                         onClick={() => removeItemHandler(item)}
                         variant="light"
@@ -95,8 +96,12 @@ export default function CartScreen() {
                 <ListGroup.Item>
                   <h3>
                     Subtotal ({cartItems.reduce((a, c) => a + c.quantity, 0)}{" "}
-                    items) : EGP
-                    {cartItems.reduce((a, c) => a + c.price * c.quantity, 0)}
+                    items) {" : "}
+                    {cartItems.reduce(
+                      (a, c) => a + c.price * c.quantity,
+                      0
+                    )}{" "}
+                    EGP
                   </h3>
                 </ListGroup.Item>
                 <ListGroup.Item>
