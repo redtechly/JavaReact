@@ -33,7 +33,12 @@ export const deleteProduct = async (id) => {
 export const createProduct = async (productData) => {
   const response = await axios.post(
     `${REST_API_BASE_URL}/addproduct`,
-    productData
+    productData,
+    {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    }
   );
   return response.data;
 };

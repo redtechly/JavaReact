@@ -2,7 +2,7 @@ import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
 import ListProductComponent from "./components/ListProductComponent";
-import ProductComponent from "./components/ProductComponent";
+import CreateProduct from "./pages/CreateProduct";
 import ListCategoryComponent from "./components/ListCategoryComponent";
 import CategoryComponent from "./components/CategoryComponent";
 import { ToastContainer } from "react-toastify";
@@ -92,7 +92,7 @@ function App() {
                 path="/list-category"
                 element={<ListCategoryComponent />}
               ></Route>
-              <Route path="/add-product" element={<ProductComponent />}></Route>
+              <Route path="/add-product" element={<CreateProduct />}></Route>
               <Route
                 path="/edit-category/:id"
                 element={<CategoryEdit />}

@@ -4,11 +4,11 @@ import { listCategories } from "../services/CategoryService";
 import { createProduct } from "../services/ProductService";
 import { useQuery } from "react-query";
 
-const ProductComponent = () => {
+const CreateProduct = () => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState(0);
-  const [imagepath, setImagepath] = useState("");
+  const [image, setImage] = useState();
   const [category, setCategory] = useState("");
   const [errors, setErrors] = useState({});
   const navigator = useNavigate();
@@ -22,19 +22,18 @@ const ProductComponent = () => {
   const validate = () => {
     const errors = {};
     if (!name.trim()) {
-      errors.name = "Name is required";
+      setErrors({ name: "Name is required", ...errors });
     }
     if (!description.trim()) {
-      errors.description = "Description is required";
+      setErrors({ description: "Description is required", ...errors });
     }
     if (price <= 0) {
+      setErrors({ price: "Price must be greater than 0", ...errors });
       errors.price = "Price must be greater than 0";
     }
-    if (!imagepath.trim()) {
-      errors.imagepath = "Image path is required";
-    }
+
     if (!category) {
-      errors.category = "Category is required";
+      setErrors({ category: "Category is required", ...errors });
     }
     setErrors(errors);
     return Object.keys(errors).length === 0;
@@ -44,21 +43,26 @@ const ProductComponent = () => {
     e.preventDefault();
     const isValid = validate();
     if (isValid) {
-      await createProduct({
-        name,
-        description,
-        price,
-        imagepath,
-        categoryName: category,
-      });
+      const formData = new FormData();
+      formData.append("name", name);
+      formData.append("description", description);
+      formData.append("price", price);
+      formData.append("categoryName", category);
+      formData.append("image", image);
+      await createProduct(formData);
       navigator("/list-product");
     }
   };
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
-    if (file) {
-      setImagepath(file.name);
+    if (file.type.startsWith("image/")) {
+      setErrors({ ...errors, image: "" });
+      setImage(file);
+    } else {
+      setErrors({ ...errors, image: "File should be image" });
+      e.target.files = null;
+      e.target.value = null;
     }
   };
 
@@ -131,8 +135,8 @@ const ProductComponent = () => {
                 <label className="form-label">Image:</label>
                 <input
                   type="hidden"
-                  name="imagepath"
-                  value={imagepath}
+                  name="image"
+                  value={image}
                   className="form-control"
                 ></input>
                 <input
@@ -141,18 +145,19 @@ const ProductComponent = () => {
                   className="form-control"
                   onChange={handleImageChange}
                 />
-                {errors.imagepath && (
-                  <div className="text-danger">{errors.imagepath}</div>
+                {errors.image && (
+                  <div className="text-danger">{errors.image}</div>
                 )}
               </div>
 
               <div className="form-group mb-2">
                 <label className="form-label">Category:</label>
                 <select
+                  defaultValue=""
                   className="form-control"
                   onChange={(e) => setCategory(e.target.value)}
                 >
-                  <option value="" disabled selected>
+                  <option value="" disabled>
                     Choose Category
                   </option>
                   {categories.map((category) => (
@@ -176,4 +181,4 @@ const ProductComponent = () => {
   );
 };
 
-export default ProductComponent;
+export default CreateProduct;
