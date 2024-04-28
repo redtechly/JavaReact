@@ -4,12 +4,15 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
+
+import { createOrder } from "../services/OrderServise";
 import { Link, useNavigate } from "react-router-dom";
 
 export default function CheckoutScreen() {
   const navigate = useNavigate();
   const { state } = useContext(Store);
   const {
+    userInfo,
     cart: { cartItems },
   } = state;
 
@@ -18,11 +21,33 @@ export default function CheckoutScreen() {
   // Calculate total quantity and total price of all items in the cart
   const totalQuantity = cartItems.reduce((a, c) => a + c.quantity, 0);
   const totalPrice = cartItems.reduce((a, c) => a + c.price * c.quantity, 0);
+  const checkoutHandler = async () => {
+    try {
 
-  const checkoutHandler = () => {
-    // Navigate to the checkout page and pass the address as a query parameter
-    navigate(`/checkout?address=${address}`);
-  };
+        if (!userInfo) {
+            // Redirect user to login if not logged in
+            navigate("/login");
+            return;
+          }
+      // Calculate total amount
+      const totalAmount = cartItems.reduce((a, c) => a + c.price * c.quantity, 0);
+  
+      // Prepare data to send to the createOrder function
+      const useremail = userInfo.user.email;// You need to set the userId here
+      const products = cartItems.map((item) => ({
+        productId: item.id,
+        quantity: item.quantity,
+      }));
+  
+      // Call the createOrder function with address and total amount
+      await createOrder( useremail , products, address, totalAmount);
+  
+    //   // Navigate to the checkout page
+    //   navigate(`/checkout?address=${address}`);
+    } catch (error) {
+      console.error("Failed to place order:", error);
+    }
+}
 
   return (
     <div className="container mt-2 mb-5">
@@ -88,7 +113,7 @@ export default function CheckoutScreen() {
               onClick={checkoutHandler}
               disabled={cartItems.length === 0 || address.trim() === ""}
             >
-              Proceed to Checkout
+              Make order
             </Button>
           </div>
         </Col>
