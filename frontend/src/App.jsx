@@ -35,6 +35,7 @@ import Dashboardpage from "./pages/Dashboard";
 import ProductsComponent from "./components/ProductsComponent";
 import CartScreen from "./pages/CartScreen";
 import ProductsByCategpry from "./pages/ProductsByCategpry";
+import CheckoutScreen from "./pages/CheckoutScreen";
 
 export const REST_API_BASE_URL = "http://localhost:8081/api";
 
@@ -97,7 +98,9 @@ function App() {
                 path="/edit-category/:id"
                 element={<CategoryEdit />}
               ></Route>
+               <Route path="/Checkout" element={<CheckoutScreen />} />
             </Routes>
+           
             <ToastContainer position="bottom-center" limit={1} />
             <FooterComponent />
           </StoreProvider>
