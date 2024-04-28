@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 import "../../css/permission.css";
 
-const AssignRoleToUser = () => {
+const AssignRoleToUserScreen = () => {
   // Mimic componentDidMount for jQuery initialization
   // useEffect(() => {
   //   $(".chosen-select").chosen({
@@ -13,16 +13,24 @@ const AssignRoleToUser = () => {
   return (
     <div>
       <title>Permission</title>
-      
-
       <div className="cardBox">
-      <Link to="/Dashboard" className="btn btn-primary">dashboard</Link>
+        <Link to="/Dashboard" className="btn btn-primary">
+          dashboard
+        </Link>
         <div className="card">
           <div className="space">
-            <Link to="/create-role" className="link">Create OR Assign</Link>
-            <Link to="/assign-role" className="link">Assign role to user</Link>
-            <Link to="/edit-role" className="link">Edit role name</Link>
-            <Link to="/delete-role" className="link">Delete role</Link>
+            <Link to="/create-role" className="link">
+              Create OR Assign
+            </Link>
+            <Link to="/assign-role" className="link">
+              Assign role to user
+            </Link>
+            <Link to="/edit-role" className="link">
+              Edit role name
+            </Link>
+            <Link to="/delete-role" className="link">
+              Delete role
+            </Link>
             <br />
           </div>
           <div className="card">
@@ -54,4 +62,4 @@ const AssignRoleToUser = () => {
   );
 };
 
-export default AssignRoleToUser;
+export default AssignRoleToUserScreen;

@@ -2,9 +2,9 @@ import { useNavigate } from "react-router-dom";
 import { useQuery } from "react-query";
 import { listProducts } from "../services/ProductService";
 import { Col, Row } from "react-bootstrap";
-import ProductCard from "./ProductCard";
+import ProductCard from "../components/ProductCard";
 
-const ProductsComponent = () => {
+const ProductsScreen = () => {
   const { data: allProduct, isLoading } = useQuery("List Product", () =>
     listProducts()
   );
@@ -25,4 +25,4 @@ const ProductsComponent = () => {
   );
 };
 
-export default ProductsComponent;
+export default ProductsScreen;

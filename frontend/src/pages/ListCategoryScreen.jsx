@@ -2,7 +2,7 @@ import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
 import { deleteCategory, listCategories } from "../services/CategoryService";
 
-const ListCategoryComponent = () => {
+const ListCategoryScreen = () => {
   const navigator = useNavigate();
 
   const {
@@ -67,4 +67,4 @@ const ListCategoryComponent = () => {
   );
 };
 
-export default ListCategoryComponent;
+export default ListCategoryScreen;

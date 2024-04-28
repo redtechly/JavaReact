@@ -1,29 +1,22 @@
 import React, { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import { getCategory, updateCategory } from "../services/CategoryService";
-import { useQuery } from "react-query";
+import { useNavigate } from "react-router-dom";
+import { createCategory } from "../services/CategoryService";
 
-const CategoryEdit = () => {
+const CategoryCreateScreen = () => {
   const [name, setName] = useState("");
   const navigator = useNavigate();
-  const { id } = useParams();
-  const { isLoading } = useQuery(
-    ["Get Category", id],
-    () => getCategory(Number(id)),
-    {
-      onSuccess: (data) => {
-        setName(data.name);
-      },
-    }
-  );
+  const saveCategory = async (e) => {
+    e.preventDefault();
+    await createCategory({ name });
+    navigator("/list-category");
+  };
 
-  if (isLoading) return <h1>Loading</h1>;
   return (
     <div className="container">
       <br /> <br />
       <button
         className="btn btn-primary"
-        onClick={() => navigator("/list-category")}
+        onClick={() => navigator("/Dashboard")}
       >
         Go Back
       </button>
@@ -44,15 +37,8 @@ const CategoryEdit = () => {
                 ></input>
               </div>
 
-              <button
-                className="btn btn-success"
-                onClick={async (e) => {
-                  e.preventDefault();
-                  await updateCategory(id, { name });
-                  navigator("/list-category");
-                }}
-              >
-                Update
+              <button className="btn btn-success" onClick={saveCategory}>
+                Submit
               </button>
             </form>
           </div>
@@ -62,4 +48,4 @@ const CategoryEdit = () => {
   );
 };
 
-export default CategoryEdit;
+export default CategoryCreateScreen;
