@@ -33,6 +33,8 @@ import ProductsScreen from "./pages/ProductsScreen";
 import CartScreen from "./pages/CartScreen";
 import ProductsByCategpry from "./pages/ProductsByCategpry";
 import CheckoutScreen from "./pages/CheckoutScreen";
+import MyordersScreen from "./pages/MyordersScreen"
+import OrdersScreen from "./pages/OrdersScreen"
 
 export const REST_API_BASE_URL = "http://localhost:8081/api";
 
@@ -99,6 +101,9 @@ function App() {
                 element={<CategoryEditScreen />}
               ></Route>
                <Route path="/Checkout" element={<CheckoutScreen />} />
+               <Route path="/list-orders" element={<MyordersScreen />} />
+               <Route path="/Users-orders" element={<OrdersScreen />} />
+               
             </Routes>
            
             <ToastContainer position="bottom-center" limit={1} />

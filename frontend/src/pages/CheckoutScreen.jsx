@@ -10,7 +10,8 @@ import { Link, useNavigate } from "react-router-dom";
 
 export default function CheckoutScreen() {
   const navigate = useNavigate();
-  const { state } = useContext(Store);
+
+  const { state ,dispatch: ctxDispatch} = useContext(Store);
   const {
     userInfo,
     cart: { cartItems },
@@ -40,7 +41,7 @@ export default function CheckoutScreen() {
       }));
   
       // Call the createOrder function with address and total amount
-      await createOrder( useremail , products, address, totalAmount);
+      await createOrder( useremail , products, address, totalAmount,ctxDispatch);
   
     //   // Navigate to the checkout page
     //   navigate(`/checkout?address=${address}`);

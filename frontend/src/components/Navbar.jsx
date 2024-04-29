@@ -82,6 +82,7 @@ const NavigationBar = () => {
                       <LinkContainer to="/list-user">
                         <NavDropdown.Item>Mange Users</NavDropdown.Item>
                       </LinkContainer>
+                      
                     </>
                   ) : (
                     <>
@@ -93,6 +94,9 @@ const NavigationBar = () => {
                       </LinkContainer>
                       <LinkContainer to={`/Dashboard`}>
                         <NavDropdown.Item>Dashboard</NavDropdown.Item>
+                      </LinkContainer>
+                      <LinkContainer to="/list-orders">
+                        <NavDropdown.Item>My Orders</NavDropdown.Item>
                       </LinkContainer>
                     </>
                   )}
