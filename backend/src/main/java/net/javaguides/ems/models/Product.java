@@ -1,12 +1,15 @@
 package net.javaguides.ems.models;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Product {
@@ -22,8 +25,21 @@ public class Product {
     @ManyToOne
     private Category category;
 
+    @OneToMany(mappedBy = "product")
+    private List<OrderItem> orderItems = new ArrayList<>();
+
     public Product() {
     }
+
+
+    public List<OrderItem> getOrderItems() {
+        return orderItems;
+    }
+
+    public void setOrderItems(List<OrderItem> orderItems) {
+        this.orderItems = orderItems;
+    }
+
 
 
     public Product(String name, String description, int price, String imagepathe, Category category) {

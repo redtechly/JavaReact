@@ -104,7 +104,7 @@ export default function CartScreen() {
                     EGP
                   </h3>
                 </ListGroup.Item>
-                <ListGroup.Item>
+                {/* <ListGroup.Item>
                   <div className="d-grid">
                     <Button
                       type="button"
@@ -115,12 +115,24 @@ export default function CartScreen() {
                       Proceed to Checkout
                     </Button>
                   </div>
-                </ListGroup.Item>
+                </ListGroup.Item> */}
               </ListGroup>
             </Card.Body>
           </Card>
         </Col>
       </Row>
+      <Link to="/Checkout">
+      <div className="d-grid">
+                    <Button
+                      type="button"
+                      variant="primary"
+                      onClick={checkoutHandler}
+                      disabled={cartItems.length === 0}
+                    >
+                      Proceed to Checkout
+                    </Button>
+                  </div>
+                  </Link>
     </div>
   );
 }
