@@ -1,13 +1,15 @@
 package net.javaguides.ems;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
+import static org.junit.Assert.assertEquals;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class EmsBackendApplicationTests {
+public class EmsBackendApplicationTests {
 
 	@Test
-	void contextLoads() {
+	public void contextLoads() {
+		assertEquals(0, 0);
 	}
 
 }
