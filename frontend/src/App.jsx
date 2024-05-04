@@ -24,7 +24,7 @@ import SignupScreen from "./pages/SignupScreen";
 import TestPage from "./pages/TestPage";
 import ProfileScreen from "./pages/ProfileScreen";
 import ListUserScreen from "./pages/ListUserScreen";
-import ChatPage from "./pages/ChatPage";
+import ChatRoom from './components/ChatRoom';
 import AboutUsScreen from "./pages/AboutUsScreen";
 import DeleteUsersScreen from "./pages/DeleteUsersScreen";
 import DisplayUsersScreen from "./pages/DisplayUsersScreen";
@@ -60,7 +60,7 @@ function App() {
               <Route path="/edit-role" element={<EditRoleScreen />} />
               <Route path="/delete-role" element={<DeleteRoleScreen />} />
               <Route path="/Permissionpage" element={<PermissionScreen />} />
-              <Route path="/chatpage" element={<ChatPage />} />
+              <Route path="/chatpage" element={<ChatRoom />} />
               <Route path="/Dashboard" element={<Dashboardpage />} />
               <Route path="/deleteusers" element={<DeleteUsersScreen />} />
               <Route path="/about-us" element={<AboutUsScreen />} />
