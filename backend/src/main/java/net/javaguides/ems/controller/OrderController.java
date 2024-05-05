@@ -1,9 +1,9 @@
 package net.javaguides.ems.controller;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.jsonwebtoken.lang.Collections;
 import net.javaguides.ems.models.Order;
 import net.javaguides.ems.models.OrderItem;
 import net.javaguides.ems.models.Product;
@@ -99,22 +100,62 @@ User user = optionalUser.get();
     return ResponseEntity.ok(createdOrder);
 }
     
-
-
 @GetMapping("/all")
-public List<Order> getAllOrders() {
-    return orderRepository.findAll();
+public Map<Long, Map<String, Object>> getAllOrders() {
+    List<Order> orders = orderRepository.findAll();
+    Map<Long, Map<String, Object>> ordersMap = new HashMap<>();
+    for (Order order : orders) {
+        List<OrderItem> orderItems = order.getOrderItems();
+        Map<String, Object> orderDetails = new HashMap<>();
+        orderDetails.put("id", order.getId());
+        orderDetails.put("orderDate", order.getOrderDate());
+        orderDetails.put("totalAmount", order.getTotalAmount());
+        orderDetails.put("status", order.getStatus());
+        orderDetails.put("address", order.getAddress());
+        
+        Map<String, Object> productDetails = new HashMap<>();
+        for (OrderItem orderItem : orderItems) {
+            productDetails.put(orderItem.getProduct().getName(), orderItem.getQuantity());
+        }
+        orderDetails.put("products", productDetails);
+        
+        ordersMap.put(order.getId(), orderDetails);
+    }
+    System.out.println("All Orders Map retrieved: " + ordersMap);
+    return ordersMap;
 }
+
 
 @GetMapping("/byUser/{email}")
-public List<Order> getOrdersByUserEmail(@PathVariable String email) {
+public Map<Long, Map<String, Object>> getOrdersByUserEmail(@PathVariable String email) {
     User user = userRepository.findByEmail(email).orElse(null);
     if (user != null) {
-        return orderRepository.findByUser(user);
+        List<Order> orders = orderRepository.findByUser(user);
+        Map<Long, Map<String, Object>> ordersMap = new HashMap<>();
+        for (Order order : orders) {
+            List<OrderItem> orderItems = order.getOrderItems();
+            Map<String, Object> orderDetails = new HashMap<>();
+            orderDetails.put("id", order.getId());
+            orderDetails.put("orderDate", order.getOrderDate());
+            orderDetails.put("totalAmount", order.getTotalAmount());
+            orderDetails.put("status", order.getStatus());
+            orderDetails.put("address", order.getAddress());
+            
+            Map<String, Object> productDetails = new HashMap<>();
+            for (OrderItem orderItem : orderItems) {
+                productDetails.put(orderItem.getProduct().getName(), orderItem.getQuantity());
+            }
+            orderDetails.put("products", productDetails);
+            
+            ordersMap.put(order.getId(), orderDetails);
+        }
+        System.out.println("Orders Map retrieved: " + ordersMap);
+        return ordersMap;
     } else {
-        return null; 
+        return Collections.emptyMap(); 
     }
 }
+
 
 
 

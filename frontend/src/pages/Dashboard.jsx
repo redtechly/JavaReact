@@ -42,6 +42,11 @@ const Dashboard = () => {
                 Users Management
               </Button>
             </Link>
+            <Link to="/Users-orders">
+              <Button variant="primary" className="w-100">
+               orders
+              </Button>
+            </Link>
           </div>
         </div>
       </div>
