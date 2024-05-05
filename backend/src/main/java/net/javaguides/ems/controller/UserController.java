@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import jakarta.servlet.http.HttpServletRequest;
+import net.javaguides.ems.annotations.AdminAction;
 import net.javaguides.ems.models.AuthenticationResponse;
 import net.javaguides.ems.models.User;
 import net.javaguides.ems.repository.UserRepository;
@@ -99,17 +100,15 @@ public class UserController {
             String jwtToken = authHeader.substring(7); // Remove "Bearer " prefix
             return authService.getUserFromToken(jwtToken);
         } else {
-            throw null;
+            return null;
         }
     }
 
+    @AdminAction
     @GetMapping("/jwt")
-    public HashMap<String, Object> getMethodName(HttpServletRequest request) {
+    public ResponseEntity<HashMap<String, Object>> AngetMethodName(HttpServletRequest request) {
         User user = getUserFromToken(request);
-        if (user == null) {
-            return new HashMap<String, Object>();
-        }
-        return user.toHashMap();
+        return ResponseEntity.ok(user.toHashMap());
     }
 
 }

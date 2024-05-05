@@ -57,7 +57,12 @@ public class JWTService {
     }
 
     public String extractUsername(String token) {
-        return extractClaim(token, Claims::getSubject);
+        try {
+            return extractClaim(token, Claims::getSubject);
+        } catch (Exception e) {
+            return null;
+        }
+
     }
 
     private boolean isTokenExpired(String token) {
