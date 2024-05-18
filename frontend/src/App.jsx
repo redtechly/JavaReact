@@ -24,7 +24,7 @@ import SignupScreen from "./pages/SignupScreen";
 import TestPage from "./pages/TestPage";
 import ProfileScreen from "./pages/ProfileScreen";
 import ListUserScreen from "./pages/ListUserScreen";
-import ChatRoom from './components/ChatRoom';
+import ChatRoom from "./components/ChatRoom";
 import AboutUsScreen from "./pages/AboutUsScreen";
 import DeleteUsersScreen from "./pages/DeleteUsersScreen";
 import DisplayUsersScreen from "./pages/DisplayUsersScreen";
@@ -33,8 +33,8 @@ import ProductsScreen from "./pages/ProductsScreen";
 import CartScreen from "./pages/CartScreen";
 import ProductsByCategpry from "./pages/ProductsByCategpry";
 import CheckoutScreen from "./pages/CheckoutScreen";
-import MyordersScreen from "./pages/MyordersScreen"
-import OrdersScreen from "./pages/OrdersScreen"
+import MyordersScreen from "./pages/MyordersScreen";
+import OrdersScreen from "./pages/OrdersScreen";
 
 export const REST_API_BASE_URL = "http://localhost:8081/api";
 
@@ -46,7 +46,7 @@ function App() {
       <BrowserRouter>
         <QueryClientProvider client={queryClient}>
           <StoreProvider>
-            <Navbar />
+            {/* <Navbar /> */}
             <Routes>
               <Route path="/" element={<HomeScreen />} />
               <Route path="/login" element={<LoginScreen />} />
@@ -100,14 +100,13 @@ function App() {
                 path="/edit-category/:id"
                 element={<CategoryEditScreen />}
               ></Route>
-               <Route path="/Checkout" element={<CheckoutScreen />} />
-               <Route path="/list-orders" element={<MyordersScreen />} />
-               <Route path="/Users-orders" element={<OrdersScreen />} />
-               
+              <Route path="/Checkout" element={<CheckoutScreen />} />
+              <Route path="/list-orders" element={<MyordersScreen />} />
+              <Route path="/Users-orders" element={<OrdersScreen />} />
             </Routes>
-           
+
             <ToastContainer position="bottom-center" limit={1} />
-            <Footer />
+            {/* <Footer /> */}
           </StoreProvider>
         </QueryClientProvider>
       </BrowserRouter>
