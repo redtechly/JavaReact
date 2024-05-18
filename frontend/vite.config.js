@@ -3,9 +3,6 @@ import react from "@vitejs/plugin-react";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  define: {
-    global: {},
-  },
   resolve: {
     alias: [
       {
@@ -22,6 +19,9 @@ export default defineConfig({
         replacement: "./node_modules/sockjs-client/lib/utils/browser-crypto.js",
       },
     ],
+  },
+  define: {
+    global: {},
   },
   plugins: [react()],
   build: {
