@@ -37,6 +37,7 @@ import MyordersScreen from "./pages/MyordersScreen";
 import OrdersScreen from "./pages/OrdersScreen";
 
 export const REST_API_BASE_URL = "http://localhost:8081/api";
+// export const REST_API_BASE_URL = "/api";
 
 const queryClient = new QueryClient();
 
@@ -46,7 +47,7 @@ function App() {
       <BrowserRouter>
         <QueryClientProvider client={queryClient}>
           <StoreProvider>
-            {/* <Navbar /> */}
+            <Navbar />
             <Routes>
               <Route path="/" element={<HomeScreen />} />
               <Route path="/login" element={<LoginScreen />} />
@@ -106,7 +107,7 @@ function App() {
             </Routes>
 
             <ToastContainer position="bottom-center" limit={1} />
-            {/* <Footer /> */}
+            <Footer />
           </StoreProvider>
         </QueryClientProvider>
       </BrowserRouter>
