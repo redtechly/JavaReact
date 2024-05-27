@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+    <br/>
+    <h1 style="text-align:center"> chat room</h1>
+    <br/><br/>
+    <div id="chat">
+    <ul id="messages"></ul>
+    <form id="chatform">
+    <input id="message" type="text" placeholder="enter your message"/>
+    <input id="fileinput" type="file" accept="image/"/>
+    <button>submit</button>
+    </form>
+    </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="script.js"></script>
+ 
+     
+</body>
+</html>
