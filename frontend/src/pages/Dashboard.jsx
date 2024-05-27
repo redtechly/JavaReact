@@ -1,58 +1,83 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import {
-  Button,
-} from "react-bootstrap";
-import { LinkContainer } from "react-router-bootstrap";
-import "../../css/dash.css";
+import { Button } from "react-bootstrap";
+import styled from "styled-components";
+
+const DashboardContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f8f8f8;
+`;
+
+const Sidebar = styled.div`
+  width: 300px;
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+`;
+
+const Title = styled.h1`
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 30px;
+  color: #333;
+`;
+
+const ButtonContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+`;
+
+const DashboardButton = styled(Button)`
+  background-color: #007bff;
+  border-color: #007bff;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 12px 20px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+  }
+`;
 
 const Dashboard = () => {
-    return (
-      <div className="page d-flex mt-5 justify-content-center">
-        <div className="sidebar d-flex flex-column">
-          <h1 className="text-center mb-4">Dashboard</h1>
-          <div className="flex-grow-1 d-flex flex-column">
-            <Link to="/list-product">
-              <Button variant="primary" className="mb-2 w-100">
-                All Products
-              </Button>
-            </Link>
-            <Link to="/add-product">
-              <Button variant="primary" className="mb-2 w-100">
-                Add Product
-              </Button>
-            </Link>
-            <Link to="/add-category">
-              <Button variant="primary" className="mb-2 w-100">
-                Add Category
-              </Button>
-            </Link>
-            <Link to="/list-category">
-              <Button variant="primary" className="mb-2 w-100">
-                All Categories
-              </Button>
-            </Link>
-            <Link to="/Permissionpage">
-              <Button variant="primary" className="mb-2 w-100">
-                Permissions
-              </Button>
-            </Link>
-            <Link to="/User-management">
-              <Button variant="primary" className="w-100">
-                Users Management
-              </Button>
-            </Link>
-            <Link to="/Users-orders">
-              <Button variant="primary" className="w-100">
-               orders
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </div>
-    );
-  };
-  
-  
+  return (
+    <DashboardContainer>
+      <Sidebar>
+        <Title>Dashboard</Title>
+        <ButtonContainer>
+          <Link to="/list-product">
+            <DashboardButton>All Products</DashboardButton>
+          </Link>
+          <Link to="/add-product">
+            <DashboardButton>Add Product</DashboardButton>
+          </Link>
+          <Link to="/add-category">
+            <DashboardButton>Add Category</DashboardButton>
+          </Link>
+          <Link to="/list-category">
+            <DashboardButton>All Categories</DashboardButton>
+          </Link>
+          <Link to="/Permissionpage">
+            <DashboardButton>Permissions</DashboardButton>
+          </Link>
+          <Link to="/User-management">
+            <DashboardButton>Users Management</DashboardButton>
+          </Link>
+          <Link to="/Users-orders">
+            <DashboardButton>Orders</DashboardButton>
+          </Link>
+        </ButtonContainer>
+      </Sidebar>
+    </DashboardContainer>
+  );
+};
 
 export default Dashboard;
