@@ -6,7 +6,12 @@ export const listProducts = async () => {
   const response = await axios.get(`${REST_API_BASE_URL}/product`);
   return response.data;
 };
-
+export const searchProducts = async (keyword) => {
+  const response = await axios.get(`${REST_API_BASE_URL}/search`, {
+    params: { keyword }
+  });
+  return response.data;
+};
 export const getProduct = async (id) => {
   const response = await axios.get(`${REST_API_BASE_URL}/product/${id}`);
   return response.data;
