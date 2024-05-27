@@ -119,6 +119,15 @@ public class ProductController {
         }
         return null;
     }
+    @GetMapping("/search")
+    public List<HashMap<String, Object>> searchProducts(@RequestParam("keyword") String keyword) {
+        List<Product> products = this.productRepository.searchProductsByKeyword(keyword);
+        ArrayList<HashMap<String, Object>> list = new ArrayList<HashMap<String, Object>>();
+        for (Product product : products) {
+            list.add(product.toHashMap());
+        }
+        return list;
+    }
 
     private String saveImage(MultipartFile imageFile) {
         if (imageFile.isEmpty()) {
