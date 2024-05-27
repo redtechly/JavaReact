@@ -29,7 +29,6 @@ export default function SignupScreen() {
       errors.name = "Name is required";
       isValid = false;
     }
-    
 
     if (!email) {
       errors.email = "Email is required";
@@ -49,7 +48,6 @@ export default function SignupScreen() {
       isValid = false;
     }
 
-
     if (parseInt(age) < 16) {
       errors.age = "Age must be at least 16";
       isValid = false;
@@ -57,18 +55,17 @@ export default function SignupScreen() {
 
     setErrors(errors);
     return isValid;
-
-
   };
 
   const submitHandler = async (e) => {
     e.preventDefault();
-     // Validate age
-     if (parseInt(age) < 16) {
+
+    // Validate age
+    if (parseInt(age) < 16) {
       toast.error("Age must be at least 16");
       return;
     }
-    
+
     if (validateForm()) {
       try {
         const data = await registerUser(name, email, password, address, age);
@@ -88,17 +85,13 @@ export default function SignupScreen() {
   }, [navigate, userInfo]);
 
   return (
-    <Container
-      className="mt-3  small-container"
-      style={{
-        maxWidth: "600px",
-      }}
-    >
-      <h1 className="my-3">Sign Up</h1>
+    <Container style={{ maxWidth: "600px", marginTop: "50px" }}>
+      <h1 style={{ marginBottom: "20px" }}>Sign Up</h1>
       <Form onSubmit={submitHandler}>
-        <Form.Group className="mb-3" controlId="name">
+        <Form.Group controlId="name" className="mb-3">
           <Form.Label>Name</Form.Label>
           <Form.Control
+            type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
             required
@@ -109,13 +102,13 @@ export default function SignupScreen() {
           </Form.Control.Feedback>
         </Form.Group>
 
-        <Form.Group className="mb-3" controlId="email">
+        <Form.Group controlId="email" className="mb-3">
           <Form.Label>Email</Form.Label>
           <Form.Control
             type="email"
-            required
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            required
             isInvalid={errors.email}
           />
           <Form.Control.Feedback type="invalid">
@@ -123,13 +116,13 @@ export default function SignupScreen() {
           </Form.Control.Feedback>
         </Form.Group>
 
-        <Form.Group className="mb-3" controlId="password">
+        <Form.Group controlId="password" className="mb-3">
           <Form.Label>Password</Form.Label>
           <Form.Control
             type="password"
-            required
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            required
             isInvalid={errors.password}
           />
           <Form.Control.Feedback type="invalid">
@@ -137,27 +130,31 @@ export default function SignupScreen() {
           </Form.Control.Feedback>
         </Form.Group>
 
-        <Form.Group className="mb-3" controlId="address">
+        <Form.Group controlId="address" className="mb-3">
           <Form.Label>Address</Form.Label>
           <Form.Control
             type="text"
-            required
             value={address}
             onChange={(e) => setAddress(e.target.value)}
+            required
           />
         </Form.Group>
 
-        <Form.Group className="mb-3" controlId="age">
+        <Form.Group controlId="age" className="mb-3">
           <Form.Label>Age</Form.Label>
           <Form.Control
-            type="text"
-            required
+            type="number"
             value={age}
             onChange={(e) => setAge(e.target.value)}
+            required
+            isInvalid={errors.age}
           />
+          <Form.Control.Feedback type="invalid">
+            {errors.age}
+          </Form.Control.Feedback>
         </Form.Group>
 
-        <Form.Group className="mb-3" controlId="confirmPassword">
+        <Form.Group controlId="confirmPassword" className="mb-3">
           <Form.Label>Confirm Password</Form.Label>
           <Form.Control
             type="password"
@@ -171,10 +168,8 @@ export default function SignupScreen() {
           </Form.Control.Feedback>
         </Form.Group>
 
-        <div className="mb-3">
-          <Button type="submit">Sign Up</Button>
-        </div>
-        <div className="mb-3">
+        <Button type="submit" className="mb-3">Sign Up</Button>
+        <div>
           Already have an account? <Link to={`/login`}>Log In</Link>
         </div>
       </Form>
