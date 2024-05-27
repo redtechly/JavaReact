@@ -92,9 +92,6 @@ const NavigationBar = () => {
                       <LinkContainer to={`/edit-user/${userInfo.user.id}`}>
                         <NavDropdown.Item>User Profile</NavDropdown.Item>
                       </LinkContainer>
-                      <LinkContainer to={`/Dashboard`}>
-                        <NavDropdown.Item>Dashboard</NavDropdown.Item>
-                      </LinkContainer>
                       <LinkContainer to="/list-orders">
                         <NavDropdown.Item>My Orders</NavDropdown.Item>
                       </LinkContainer>
