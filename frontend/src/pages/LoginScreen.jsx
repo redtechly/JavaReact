@@ -61,18 +61,14 @@ const LoginScreen = () => {
   }, [navigate, userInfo]);
 
   return (
-    <Container
-      className="mt-3 small-container"
-      style={{
-        maxWidth: "600px",
-      }}
-    >
-      <h1 className="my-3">Log In</h1>
-      <Form onSubmit={submitHandler}>
-        <Form.Group className="mb-3" controlId="email">
+    <Container className="login-container">
+      <h1 className="login-header">Log In</h1>
+      <Form onSubmit={submitHandler} className="login-form">
+        <Form.Group controlId="email">
           <Form.Label>Email</Form.Label>
           <Form.Control
             type="email"
+            placeholder="Enter your email"
             required
             onChange={(e) => setEmail(e.target.value)}
             isInvalid={errors.email}
@@ -81,10 +77,11 @@ const LoginScreen = () => {
             {errors.email}
           </Form.Control.Feedback>
         </Form.Group>
-        <Form.Group className="mb-3" controlId="password">
+        <Form.Group controlId="password">
           <Form.Label>Password</Form.Label>
           <Form.Control
             type="password"
+            placeholder="Enter your password"
             required
             onChange={(e) => setPassword(e.target.value)}
             isInvalid={errors.password}
@@ -93,13 +90,11 @@ const LoginScreen = () => {
             {errors.password}
           </Form.Control.Feedback>
         </Form.Group>
-        <div className="mb-3">
-          <Button type="submit">Log In</Button>
-        </div>
-        <div className="mb-3">
-          New customer? <Link to={`/signup`}>Create your account</Link>
-        </div>
+        <Button type="submit" className="login-button">Log In</Button>
       </Form>
+      <div className="signup-link">
+        New customer? <Link to={`/signup`} className="signup-link">Create your account</Link>
+      </div>
     </Container>
   );
 };
