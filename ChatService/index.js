@@ -85,6 +85,23 @@ io.on("connection", (socket) => {
   });
 });
 
+
+app.get('/test-save', async (req, res) => {
+  const testMessage = new Messages({
+      Author: 'Test Author',
+      Content: 'This is a test message',
+      image: ''
+  });
+
+  try {
+      await testMessage.save();
+      res.send('Test message saved to database');
+  } catch (err) {
+      console.error('Error saving test message:', err);
+      res.status(500).send('Error saving test message');
+  }
+});
+
 app.use(express.static("public"));
 
 http.listen(5000, () => {
