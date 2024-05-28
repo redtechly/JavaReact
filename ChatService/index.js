@@ -2,19 +2,23 @@ const express = require("express");
 const app = express();
 const http = require("http").createServer(app);
 
+const cors = require("cors");
 const io = require("socket.io")(http, {
   cors: {
     origin: "*", // Allows all origins
     methods: ["GET", "POST", "PUT", "DELETE"], // Additional HTTP methods allowed
   },
 });
+app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.options("*", cors());
+
 const mongoose = require("mongoose");
 const multer = require("multer");
 const Tesseract = require("tesseract.js");
-const cors = require("cors");
 
 // Enable CORS
-app.use(cors());
 
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/public/index.html");
@@ -30,7 +34,7 @@ mongoose
   .catch((err) => {
     console.log(err);
   });
-
+console.log("Hiiiiiiiiiiiiiiiiiiiiiiiii");
 const MessagesSchema = new mongoose.Schema({
   Author: String,
   Content: String,
