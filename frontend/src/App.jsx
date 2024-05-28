@@ -37,8 +37,8 @@ import MyordersScreen from "./pages/MyordersScreen";
 import OrdersScreen from "./pages/OrdersScreen";
 const ChatRoom = lazy(() => import("./components/ChatRoom"));
 
-export const REST_API_BASE_URL = "http://localhost:8081/api";
-// export const REST_API_BASE_URL = "/api";
+// export const REST_API_BASE_URL = "http://localhost:8081/api";
+export const REST_API_BASE_URL = "/api";
 
 const queryClient = new QueryClient();
 

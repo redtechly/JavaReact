@@ -1,16 +1,3 @@
-# FROM eclipse-temurin:17-jdk-alpine
-
-# WORKDIR /app
-# COPY target/*.jar /app/app.jar
-
-# COPY entrypoint.sh /entrypoint.sh
-# RUN chmod +x /entrypoint.sh
-
-# # Use the script as the entrypoint
-# ENTRYPOINT ["java","-jar","app.jar"]
-
-# syntax=docker/dockerfile:1.4
-
 FROM --platform=$BUILDPLATFORM maven:3.8.5-eclipse-temurin-17 AS builder
 WORKDIR /workdir/server
 COPY pom.xml /workdir/server/pom.xml
@@ -21,16 +8,12 @@ RUN mvn install
 
 FROM builder as dev-envs
 
-RUN <<EOF
-apt-get update
-apt-get install -y git
-EOF
+RUN apt-get update && apt-get install -y git
 
-RUN <<EOF
-useradd -s /bin/bash -m vscode
-groupadd docker
-usermod -aG docker vscode
-EOF
+RUN useradd -s /bin/bash -m vscode && \
+    groupadd docker && \
+    usermod -aG docker vscode
+
 # install Docker tools (cli, buildx, compose)
 COPY --from=gloursdocker/docker / /
 CMD ["mvn", "spring-boot:run"]
