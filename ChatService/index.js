@@ -4,8 +4,8 @@ const http = require("http").createServer(app);
 
 const io = require("socket.io")(http, {
   cors: {
-    origin: "http://4.178.120.254:8081/", // Your React frontend URL
-    methods: ["GET", "POST"],
+    origin: "*", // Allows all origins
+    methods: ["GET", "POST", "PUT", "DELETE"], // Additional HTTP methods allowed
   },
 });
 const mongoose = require("mongoose");
