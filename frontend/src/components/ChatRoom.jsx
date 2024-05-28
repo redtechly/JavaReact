@@ -3,7 +3,7 @@ import Swal from "sweetalert2";
 import io from "socket.io-client";
 import "../../css/chat.css";
 
-const socket = io("http://chat:5000");
+const socket = io("http://4.178.120.254:5000");
 
 const ChatApp = () => {
   const [username, setUsername] = useState(
