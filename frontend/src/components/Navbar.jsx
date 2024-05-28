@@ -70,7 +70,7 @@ const NavigationBar = () => {
                       <LinkContainer to="/Dashboard">
                         <NavDropdown.Item>Admin Dashboard</NavDropdown.Item>
                       </LinkContainer>
-                      <LinkContainer to="/updateuser">
+                      <LinkContainer to={`/edit-user/${userInfo.user.id}`}>
                         <NavDropdown.Item>Admin Profile</NavDropdown.Item>
                       </LinkContainer>
                       <LinkContainer to="/list-product">
@@ -82,7 +82,6 @@ const NavigationBar = () => {
                       <LinkContainer to="/list-user">
                         <NavDropdown.Item>Mange Users</NavDropdown.Item>
                       </LinkContainer>
-                      
                     </>
                   ) : (
                     <>

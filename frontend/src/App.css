@@ -51,6 +51,9 @@
   font-size: 0.8em;
   color: #6c757d;
 }
+.login-container {
+  max-width: 600px;
+}
 
 .chat-input-form {
   display: flex;

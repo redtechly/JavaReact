@@ -129,7 +129,19 @@ export default function SignupScreen() {
             {errors.password}
           </Form.Control.Feedback>
         </Form.Group>
-
+        <Form.Group controlId="confirmPassword" className="mb-3">
+          <Form.Label>Confirm Password</Form.Label>
+          <Form.Control
+            type="password"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+            required
+            isInvalid={errors.confirmPassword}
+          />
+          <Form.Control.Feedback type="invalid">
+            {errors.confirmPassword}
+          </Form.Control.Feedback>
+        </Form.Group>
         <Form.Group controlId="address" className="mb-3">
           <Form.Label>Address</Form.Label>
           <Form.Control
@@ -154,21 +166,9 @@ export default function SignupScreen() {
           </Form.Control.Feedback>
         </Form.Group>
 
-        <Form.Group controlId="confirmPassword" className="mb-3">
-          <Form.Label>Confirm Password</Form.Label>
-          <Form.Control
-            type="password"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            required
-            isInvalid={errors.confirmPassword}
-          />
-          <Form.Control.Feedback type="invalid">
-            {errors.confirmPassword}
-          </Form.Control.Feedback>
-        </Form.Group>
-
-        <Button type="submit" className="mb-3">Sign Up</Button>
+        <Button type="submit" className="mb-3">
+          Sign Up
+        </Button>
         <div>
           Already have an account? <Link to={`/login`}>Log In</Link>
         </div>
