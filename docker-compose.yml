@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  backend:
+    image: java-backend
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8081:8081"
+    depends_on:
+      - db
+
+  chat:
+    image: node-chat
+    build:
+      context: ./ChatService
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+
+  db:
+    image: mysql:latest
+    environment:
+      MYSQL_DATABASE: pharmacy
+      MYSQL_USER: melkmeshi
+      MYSQL_ROOT_PASSWORD: MohElk13241
+      MYSQL_PASSWORD: MohElk13241
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+volumes:
+  mysql_data:

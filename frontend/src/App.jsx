@@ -76,6 +76,15 @@ function App() {
                 element={<ListUserScreen />}
               ></Route>
               <Route
+                path="/add-category"
+                element={<CategoryCreateScreen />}
+              ></Route>
+              <Route
+                path="/list-category"
+                element={<ListCategoryScreen />}
+              ></Route>
+
+              <Route
                 path="/edit-product/:id"
                 element={<ProductEditScreen />}
               ></Route>
@@ -87,14 +96,6 @@ function App() {
               <Route
                 path="/category/:id"
                 element={<ProductsByCategpry />}
-              ></Route>
-              <Route
-                path="/add-category"
-                element={<CategoryCreateScreen />}
-              ></Route>
-              <Route
-                path="/list-category"
-                element={<ListCategoryScreen />}
               ></Route>
               <Route path="/add-product" element={<CreateProduct />}></Route>
               <Route

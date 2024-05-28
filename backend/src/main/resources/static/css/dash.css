@@ -1,0 +1,26 @@
+.sidebar {
+  display: inline-block;
+  width: 1000px;
+  background-color: rgb(255, 255, 255);
+  padding: 20px;
+  
+  height: 100x;
+}
+
+.sidebar h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.sidebar div {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: space-around;
+  padding: 20px;
+}
+
+/* Optional: Style for hover effect on buttons */
+.sidebar a:hover {
+  text-decoration: none;
+}

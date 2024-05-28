@@ -46,6 +46,7 @@ public class OrderController {
     @PostMapping("/createorder")
     public ResponseEntity<Order> createOrder(@RequestBody HashMap<String, Object> requestData) {
         String userEmail = (String) requestData.get("useremail");
+        @SuppressWarnings("unchecked")
         List<HashMap<String, Object>> products = (List<HashMap<String, Object>>) requestData.get("products");
         String address = (String) requestData.get("address");
         double totalAmount = ((Number) requestData.get("totalAmount")).doubleValue();

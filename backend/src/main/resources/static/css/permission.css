@@ -1,0 +1,117 @@
+.cardBox {
+    position: relative;
+    width: 100%;
+    padding: 20px;
+    
+
+    grid-gap: 30px;
+  }
+  
+  .cardBox .card {
+    position: relative;
+    background: var(--white);
+    padding: 30px;
+    border-radius: 20px;
+    
+    justify-content: space-between;
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+  }
+  
+  .card .action {
+    position: relative;
+    font-weight: 600;
+    font-size: 1.5rem;
+    color: var(--blue);
+    margin-bottom: 15px;
+  }
+  
+  .cardBox .card .cardName {
+    color: var(--black2);
+    font-size: 1.1rem;
+    margin-top: 5px;
+  }
+  
+  
+  
+  label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 1rem;
+    font-weight: 500;
+}
+ /* Style form inputs */
+ input {
+     width: 100%;
+     padding: 10px;
+     margin-bottom: 15px;
+     border: 1px solid #ccc;
+     border-radius: 3px;
+ }
+
+
+ /* Style the submit button */
+ button[type="submit"] {
+     background-color: #19283f;
+     color: #fff;
+     padding: 10px 20px;
+     border: none;
+     border-radius: 3px;
+     cursor: pointer;
+ }
+
+
+
+ .form-control {
+     width: 100%;
+     /* Set the width as needed */
+     padding: 10px;
+     font-size: 16px;
+     border: 1px solid #ccc;
+     border-radius: 5px;
+     background-color: #fff;
+     color: #333;
+
+ }
+
+ /* Style the select element when focused */
+ .form-control:focus {
+     border-color: #1b3d6f;
+     outline: none;
+ }
+
+ #category, #user_role {
+     margin-bottom: 20px;
+ }
+
+ /* Style the options */
+ #category option {
+     font-size: 14px;
+     background-color: #fff;
+     color: #333;
+ }
+
+ /* Style the options when hovered */
+ #category option:hover {
+     background-color: #204171;
+     color: #fff;
+ }
+
+ .link {
+    display: inline-block;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    background-color: #19283f; /* Green background color */
+    color: white; /* White text color */
+    border: 1px solid #1c3d6e; /* Green border */
+    border-radius: 5px; /* Rounded corners */
+    transition: background-color 0.3s;
+}
+
+.link:hover {
+    background-color: #223e68; /* Darker green on hover */
+}
+
+.space{
+    margin-bottom: 20px;
+}

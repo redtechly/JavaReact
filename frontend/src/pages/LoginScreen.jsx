@@ -90,10 +90,15 @@ const LoginScreen = () => {
             {errors.password}
           </Form.Control.Feedback>
         </Form.Group>
-        <Button type="submit" className="login-button">Log In</Button>
+        <Button type="submit" className="login-button">
+          Log In
+        </Button>
       </Form>
       <div className="signup-link">
-        New customer? <Link to={`/signup`} className="signup-link">Create your account</Link>
+        New customer?{" "}
+        <Link to={`/signup`} className="signup-link">
+          Create your account
+        </Link>
       </div>
     </Container>
   );
