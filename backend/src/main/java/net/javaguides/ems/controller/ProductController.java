@@ -146,7 +146,7 @@ public class ProductController {
             }
 
             // Second target directory
-            String directoryPath2 = "./backend/src/main/resources/static/images";
+            String directoryPath2 = "/app/static/images";
             Path uploadPath2 = Paths.get(directoryPath2);
             if (!Files.exists(uploadPath2)) {
                 Files.createDirectories(uploadPath2);
